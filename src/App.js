@@ -67,7 +67,7 @@ function App() {
             />
             {/* <Yoo currentNum={activeExhaustNum} /> */}
             <OrbitControls maxPolarAngle={THREE.MathUtils.degToRad(99)} />
-            <Environment preset="sunset" background />
+            <Environment preset="sunset" />
           </Suspense>
         </Canvas>
       </div>
