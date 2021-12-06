@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  height: 100%;
 }
 
 .App-logo {
@@ -11,6 +12,25 @@
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
+}
+
+.gui-body {
+  width: 33%;
+  padding: 10px;
+  z-index: 999;
+  background-color: #15c0f0;
+}
+
+.gui-body input {
+  display: none;
+}
+
+.gui-body label {
+  color: aliceblue;
+  font-weight: 700;
+  padding: 5px;
+  margin: 5px;
+  border: oldlace 2px solid;
 }
 
 .App-header {
