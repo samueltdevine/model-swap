@@ -15,10 +15,11 @@
 }
 
 .gui-body {
-  width: 33%;
+  color: white;
+  width: 50%;
   padding: 10px;
   z-index: 999;
-  background-color: #15c0f0;
+  background-color: red;
 }
 
 .gui-body input {
@@ -26,23 +27,25 @@
 }
 
 .gui-body label {
-  color: aliceblue;
-  font-weight: 700;
+  min-height: 46px;
+  font-size: 18px;
+  font-weight: 600;
+  color: white;
   padding: 5px;
   margin: 5px;
-  border: oldlace 2px solid;
+  border: white 2px solid;
 }
 
-.wrong {
+/* .wrong {
   animation: shake normal 0.25s linear;
 }
 
 .right {
   border-color: rgb(54, 255, 188) !important;
-}
+} */
 
 .App-header {
-  background-color: #282c34;
+  background-color: white;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
