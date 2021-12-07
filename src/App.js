@@ -88,23 +88,25 @@ function App() {
             {/* <Yoo currentNum={activeExhaustNum} /> */}
             <Environment preset="sunset" />
           </Suspense>
-          <EffectComposer multisampling={8} autoClear={false}>
+          <EffectComposer multisampling={8} autoClear={true}>
             {selectedIntake && (
               <Outline
-                // blur
+                blur
                 selection={selectedIntake}
-                visibleEdgeColor="blue"
-                hiddenEdgeColor="blue"
+                visibleEdgeColor="white"
+                hiddenEdgeColor="white"
                 edgeStrength={1}
                 width={500}
               />
             )}
+          </EffectComposer>
+          <EffectComposer multisampling={8} autoClear={false}>
             {selectedExhaust && (
               <Outline
-                // blur
-                hiddenEdgeColor="red"
+                blur
+                hiddenEdgeColor="white"
                 selection={selectedExhaust}
-                visibleEdgeColor="red"
+                visibleEdgeColor="white"
                 edgeStrength={1}
                 width={500}
               />

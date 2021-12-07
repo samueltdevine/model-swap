@@ -15,7 +15,7 @@ const Products = (props) => {
     onActiveExhaust,
   } = props;
   const houseOnly = useLoader(GLTFLoader, "/houseOnly.gltf");
-  const products = useLoader(GLTFLoader, "/products2.gltf");
+  const products = useLoader(GLTFLoader, "/products.gltf");
 
   const getUniqeNodesAndGroupsByKeyContaining = useCallback(
     (keyContainString) => {
