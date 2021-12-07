@@ -10,7 +10,7 @@ import House from "./House";
 import * as THREE from "three";
 import GuiQuestion from "./Components/GuiQuestion";
 import { EffectComposer, Outline } from "@react-three/postprocessing";
-
+import Products from "./Products";
 const Model = () => {
   const gltf = useLoader(GLTFLoader, "./yoo4.glb");
   const part1 = gltf.nodes["cube1"];
@@ -24,15 +24,14 @@ const Model = () => {
 
 function App() {
   const [activeExhaustNum, setActiveExhaustNum] = useState(0);
-  const [activeIntakeNum, setActiveIntakeNum] = useState(0);
+  const [activeIntakeNum, setActiveIntakeNum] = useState(1);
   const [activePreview, setActivePreview] = useState(undefined);
+  const [activeIntake, onActiveIntake] = useState(null);
+  const [activeExhaust, onActiveExhaust] = useState(null);
+  const selectedIntake = activeIntake ? [activeIntake] : undefined;
+  const selectedExhaust = activeExhaust ? [activeExhaust] : undefined;
 
-  const childRef = useRef(null);
-  // useEffect(() => {
-  //   console.log("childRef", childRef);
-  // }, [childRef]);
-  console.log("activePreview", activePreview);
-  console.log("childRef", childRef);
+  console.log("selectedIntake", selectedIntake);
 
   return (
     <div className="App">
@@ -72,23 +71,41 @@ function App() {
         </GuiQuestion>
         <Canvas>
           <Suspense fallback={null}>
-            <House
-              forwardedRef={childRef}
+            {/* <House
+              // forwardedRef={childRef}
               currentExhaustNum={activeExhaustNum}
               currentIntakeNum={activeIntakeNum}
               // currentPreview={activePreview}
               // currentIntakePreview={activeIntakePreview}
+            /> */}
+            <Products
+              onActiveIntake={onActiveIntake}
+              onActiveExhaust={onActiveExhaust}
+              // forwardedRef={childRef}
+              currentExhaustNum={activeExhaustNum}
+              currentIntakeNum={activeIntakeNum}
             />
             {/* <Yoo currentNum={activeExhaustNum} /> */}
             <Environment preset="sunset" />
           </Suspense>
           <EffectComposer multisampling={8} autoClear={false}>
-            {childRef.current && (
+            {selectedIntake && (
               <Outline
                 // blur
-                selection={childRef}
-                visibleEdgeColor="white"
-                edgeStrength={5}
+                selection={selectedIntake}
+                visibleEdgeColor="blue"
+                hiddenEdgeColor="blue"
+                edgeStrength={1}
+                width={500}
+              />
+            )}
+            {selectedExhaust && (
+              <Outline
+                // blur
+                hiddenEdgeColor="red"
+                selection={selectedExhaust}
+                visibleEdgeColor="red"
+                edgeStrength={1}
                 width={500}
               />
             )}
