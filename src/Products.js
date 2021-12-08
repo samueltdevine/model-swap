@@ -1,10 +1,11 @@
 import React, { useCallback, useRef } from "react";
 import { useTexture } from "@react-three/drei";
 import { useLoader } from "@react-three/fiber";
-import { TextureLoader } from "three/src/loaders/TextureLoader";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+import { TextureLoader } from "three/src/loaders/TextureLoader";
 import { BoxBufferGeometry, Object3D } from "three";
 import * as THREE from "three";
+import JiggleArrow from "./Components/JiggleArrow";
 const Products = (props) => {
   const refIntake = useRef();
   const refExhaust = useRef();
@@ -16,8 +17,15 @@ const Products = (props) => {
     onActiveIntake,
     onActiveExhaust,
   } = props;
+
   const houseOnly = useLoader(GLTFLoader, "/houseOnly5.gltf");
   const products = useLoader(GLTFLoader, "/products4.gltf");
+  const arrow = useLoader(GLTFLoader, "/arrow.gltf");
+
+  const degToRad = (deg) => {
+    const rad = THREE.MathUtils.degToRad(deg);
+    return rad;
+  };
 
   const getUniqeNodesAndGroupsByKeyContaining = useCallback(
     (keyContainString, gltf) => {
@@ -112,14 +120,15 @@ const Products = (props) => {
   houseOnly.materials["Siding"].color = { b: 0.8, g: 0.4, r: 0.2 };
   houseOnly.materials["Siding_attic"].color = { b: 0.8, g: 0.4, r: 0.2 };
   houseOnly.materials["Roof"].color = { b: 0.1, g: 0.1, r: 0.1 };
-  houseOnly.materials["Siding"].bumpMap = sidingbump;
-  houseOnly.materials["Siding_attic"].bumpMap = sidingbumpAttic;
-  houseOnly.materials["Siding"].bumpScale = 0.02;
-  houseOnly.materials["Siding_attic"].bumpScale = 0.02;
+  //   houseOnly.materials["Siding"].bumpMap = sidingbump;
+  //   houseOnly.materials["Siding_attic"].bumpMap = sidingbumpAttic;
+  //   houseOnly.materials["Siding"].bumpScale = 0.02;
+  //   houseOnly.materials["Siding_attic"].bumpScale = 0.02;
   //   debugger;
   const mat = houseOnly.materials["window"];
   mat.opacity = 0.36;
   houseOnly.nodes["outer_walls"].castShadow = true;
+  houseOnly.nodes["outer_walls"].receiveShadow = true;
   houseOnly.nodes["attic_cutout"].castShadow = true;
   houseOnly.nodes["Trim"].castShadow = true;
   houseOnly.nodes["Concrete"].castShadow = true;
@@ -136,8 +145,8 @@ const Products = (props) => {
     <>
       <directionalLight
         castShadow={true}
-        shadow-mapSize-height={512}
-        shadow-mapSize-width={512}
+        shadow-mapSize-height={1024}
+        shadow-mapSize-width={1024}
         position={[3, 2, 3]}
       />
       <group scale={0.003} position={[1, -2, 0]}>
@@ -153,6 +162,105 @@ const Products = (props) => {
           onBeforeRender={(e) => onActiveIntake(refIntake)}
           object={intakes[currentIntakeNum - 1]}
         />
+        {currentExhaustNum <= 2 && (
+          <group>
+            <JiggleArrow
+              obj={arrow}
+              color={"red"}
+              position={[-640, 900, -75]}
+              rotation={[degToRad(0), degToRad(180), degToRad(90)]}
+            />
+            <JiggleArrow
+              obj={arrow}
+              color={"red"}
+              position={[0, 900, -75]}
+              rotation={[degToRad(0), degToRad(180), degToRad(90)]}
+            />
+            <JiggleArrow
+              obj={arrow}
+              color={"red"}
+              position={[-640, 900, 150]}
+              rotation={[degToRad(0), degToRad(0), degToRad(90)]}
+            />
+            <JiggleArrow
+              obj={arrow}
+              color={"red"}
+              position={[0, 900, 150]}
+              rotation={[degToRad(0), degToRad(0), degToRad(90)]}
+            />
+          </group>
+        )}
+        {currentExhaustNum === 1 ||
+          currentExhaustNum === 2 ||
+          currentExhaustNum === 0 ||
+          currentExhaustNum === 6 || (
+            <group>
+              <JiggleArrow
+                obj={arrow}
+                color={"red"}
+                position={[-640, 1000, -50]}
+                rotation={[degToRad(90), degToRad(180), 0]}
+              />
+              <JiggleArrow
+                obj={arrow}
+                color={"red"}
+                position={[0, 1000, -50]}
+                rotation={[degToRad(90), degToRad(180), 0]}
+              />
+            </group>
+          )}
+        {currentExhaustNum === 6 && (
+          <group>
+            <JiggleArrow
+              obj={arrow}
+              color={"red"}
+              position={[350, 775, 50]}
+              rotation={[degToRad(0), degToRad(90), degToRad(90)]}
+            />
+          </group>
+        )}
+        {currentIntakeNum === 1 && (
+          <group>
+            <JiggleArrow
+              obj={arrow}
+              color={"blue"}
+              position={[-1000, 775, 50]}
+              rotation={[degToRad(0), degToRad(90), degToRad(90)]}
+            />
+          </group>
+        )}
+        {currentIntakeNum === 1 || currentIntakeNum === 5 || (
+          <group>
+            <JiggleArrow
+              obj={arrow}
+              color={"blue"}
+              position={[-640, 450, 550]}
+              rotation={[degToRad(90), degToRad(180), 0]}
+            />
+            <JiggleArrow
+              obj={arrow}
+              color={"blue"}
+              position={[0, 450, 550]}
+              rotation={[degToRad(90), degToRad(180), 0]}
+            />
+          </group>
+        )}
+        {currentIntakeNum === 5 && (
+          <group>
+            <JiggleArrow
+              obj={arrow}
+              color={"blue"}
+              position={[-640, 570, 650]}
+              rotation={[degToRad(25), degToRad(180), 0]}
+            />
+            <JiggleArrow
+              obj={arrow}
+              color={"blue"}
+              position={[0, 570, 650]}
+              rotation={[degToRad(25), degToRad(180), 0]}
+            />
+          </group>
+        )}
       </group>
     </>
   );

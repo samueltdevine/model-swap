@@ -9,6 +9,7 @@ import Yoo from "./Yoo";
 import House from "./House";
 import * as THREE from "three";
 import GuiQuestion from "./Components/GuiQuestion";
+import JiggleArrow from "./Components/JiggleArrow";
 import { EffectComposer, Outline, Noise } from "@react-three/postprocessing";
 // import { EdgeDetectionMode } from "postprocessing";
 
@@ -80,7 +81,6 @@ function App() {
               currentExhaustNum={activeExhaustNum}
               currentIntakeNum={activeIntakeNum}
             />
-            {/* <Yoo currentNum={activeExhaustNum} /> */}
             <Environment preset="sunset" />
           </Suspense>
           <EffectComposer multisampling={8} autoClear={true}>
