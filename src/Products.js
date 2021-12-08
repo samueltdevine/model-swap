@@ -1,9 +1,10 @@
 import React, { useCallback, useRef } from "react";
-import { useGLTF, useFBX } from "@react-three/drei";
+import { useTexture } from "@react-three/drei";
 import { useLoader } from "@react-three/fiber";
 import { TextureLoader } from "three/src/loaders/TextureLoader";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-
+import { BoxBufferGeometry } from "three";
+import * as THREE from "three";
 const Products = (props) => {
   const refIntake = useRef();
   const refExhaust = useRef();
@@ -19,12 +20,12 @@ const Products = (props) => {
   const products = useLoader(GLTFLoader, "/products.gltf");
 
   const getUniqeNodesAndGroupsByKeyContaining = useCallback(
-    (keyContainString) => {
+    (keyContainString, gltf) => {
       const checkIfGroup = (nodeOrGroup) =>
         nodeOrGroup.children &&
         Array.isArray(nodeOrGroup.children) &&
         nodeOrGroup.children.length > 0;
-      const nodesAndGroupsEntries = Object.entries(products.nodes);
+      const nodesAndGroupsEntries = Object.entries(gltf.nodes);
       return nodesAndGroupsEntries
         .filter(([key, nodeOrGroup]) => {
           if (!key.includes(keyContainString)) return false;
@@ -43,9 +44,9 @@ const Products = (props) => {
         })
         .map(([, value]) => value);
     },
-    [products]
+    [products, houseOnly]
   );
-  const exhausts = getUniqeNodesAndGroupsByKeyContaining("exhaust");
+  const exhausts = getUniqeNodesAndGroupsByKeyContaining("exhaust", products);
   exhausts.sort(function (a, b) {
     if (a.name < b.name) {
       return -1;
@@ -55,7 +56,7 @@ const Products = (props) => {
     }
     return 0;
   });
-  const intakes = getUniqeNodesAndGroupsByKeyContaining("intake");
+  const intakes = getUniqeNodesAndGroupsByKeyContaining("intake", products);
   intakes.sort(function (a, b) {
     if (a.name < b.name) {
       return -1;
@@ -65,17 +66,19 @@ const Products = (props) => {
     }
     return 0;
   });
-  const sidingbump = useLoader(TextureLoader, "Bump.png");
-  console.log(houseOnly.materials);
+  //   const windows = getUniqeNodesAndGroupsByKeyContaining("Window", houseOnly);
+  const sidingbump = useTexture("Bump.png");
   houseOnly.materials["Siding"].color = { b: 0.2, g: 0.8, r: 0.9 };
   houseOnly.materials["Roof"].color = { b: 0.01, g: 0.01, r: 0.01 };
-
   houseOnly.materials["Siding"].bumpMap = sidingbump;
+  houseOnly.materials["Siding"].bumpScale = 0.02;
+
+  const mat = houseOnly.materials["window"];
+  mat.opacity = 0.36;
   return (
     <>
       <group scale={0.003} position={[1, -2, 0]}>
         <primitive object={houseOnly.scene} />
-        {/* <primitive object={products.nodes["attic_cutout"]} /> */}
         <primitive
           ref={refExhaust}
           onBeforeRender={(e) => onActiveExhaust(refExhaust)}
@@ -86,11 +89,6 @@ const Products = (props) => {
           onBeforeRender={(e) => onActiveIntake(refIntake)}
           object={intakes[currentIntakeNum - 1]}
         />
-        {/* <primitive
-        position={[1, -2, 0]}
-        scale={0.003}
-        object={gltf.nodes["2_Aluminum_UnderEave_Vent_2"]}
-    /> */}
       </group>
     </>
   );
