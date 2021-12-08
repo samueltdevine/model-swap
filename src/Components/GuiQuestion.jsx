@@ -41,8 +41,9 @@ const GuiQuestion = (props, children) => {
   }
   return (
     <div
+      style={{ borderRight: "1px solid #dee2e6" }}
       className="gui-body"
-      style={{ display: "flex", flexDirection: "column" }}
+      // style={{ display: "flex", flexDirection: "column" }}
     >
       <h1>{props.children}</h1>
       <label
