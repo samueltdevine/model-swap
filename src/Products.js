@@ -1,6 +1,7 @@
 import React, { useCallback, useRef } from "react";
 import { useGLTF, useFBX } from "@react-three/drei";
 import { useLoader } from "@react-three/fiber";
+import { TextureLoader } from "three/src/loaders/TextureLoader";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
 const Products = (props) => {
@@ -14,7 +15,7 @@ const Products = (props) => {
     onActiveIntake,
     onActiveExhaust,
   } = props;
-  const houseOnly = useLoader(GLTFLoader, "/houseOnly.gltf");
+  const houseOnly = useLoader(GLTFLoader, "/houseOnly3.gltf");
   const products = useLoader(GLTFLoader, "/products.gltf");
 
   const getUniqeNodesAndGroupsByKeyContaining = useCallback(
@@ -64,12 +65,17 @@ const Products = (props) => {
     }
     return 0;
   });
+  const sidingbump = useLoader(TextureLoader, "Bump.png");
+  console.log(houseOnly.materials);
+  houseOnly.materials["Siding"].color = { b: 0.2, g: 0.8, r: 0.9 };
+  houseOnly.materials["Roof"].color = { b: 0.01, g: 0.01, r: 0.01 };
 
+  houseOnly.materials["Siding"].bumpMap = sidingbump;
   return (
     <>
       <group scale={0.003} position={[1, -2, 0]}>
         <primitive object={houseOnly.scene} />
-        <primitive object={products.nodes["attic_cutout"]} />
+        {/* <primitive object={products.nodes["attic_cutout"]} /> */}
         <primitive
           ref={refExhaust}
           onBeforeRender={(e) => onActiveExhaust(refExhaust)}
