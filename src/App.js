@@ -9,7 +9,9 @@ import Yoo from "./Yoo";
 import House from "./House";
 import * as THREE from "three";
 import GuiQuestion from "./Components/GuiQuestion";
-import { EffectComposer, Outline } from "@react-three/postprocessing";
+import { EffectComposer, Outline, Noise } from "@react-three/postprocessing";
+// import { EdgeDetectionMode } from "postprocessing";
+
 import Products from "./Products";
 const Model = () => {
   const gltf = useLoader(GLTFLoader, "./yoo4.glb");
@@ -99,6 +101,8 @@ function App() {
                 width={500}
               />
             )}
+            <Noise opacity={0.05} />
+            {/* <GodRays /> */}
           </EffectComposer>
           <EffectComposer multisampling={8} autoClear={false}>
             {selectedExhaust && (

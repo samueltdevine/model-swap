@@ -68,7 +68,7 @@ const Products = (props) => {
   });
   //   const windows = getUniqeNodesAndGroupsByKeyContaining("Window", houseOnly);
   const sidingbump = useTexture("Bump.png");
-  houseOnly.materials["Siding"].color = { b: 0.2, g: 0.8, r: 0.9 };
+  houseOnly.materials["Siding"].color = { b: 0.8, g: 0.4, r: 0.2 };
   houseOnly.materials["Roof"].color = { b: 0.01, g: 0.01, r: 0.01 };
   houseOnly.materials["Siding"].bumpMap = sidingbump;
   houseOnly.materials["Siding"].bumpScale = 0.02;
