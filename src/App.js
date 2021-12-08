@@ -71,15 +71,8 @@ function App() {
         >
           Intake
         </GuiQuestion>
-        <Canvas>
+        <Canvas shadows={true} shadowMap>
           <Suspense fallback={null}>
-            {/* <House
-              // forwardedRef={childRef}
-              currentExhaustNum={activeExhaustNum}
-              currentIntakeNum={activeIntakeNum}
-              // currentPreview={activePreview}
-              // currentIntakePreview={activeIntakePreview}
-            /> */}
             <Products
               onActiveIntake={onActiveIntake}
               onActiveExhaust={onActiveExhaust}
@@ -101,7 +94,7 @@ function App() {
                 width={500}
               />
             )}
-            <Noise opacity={0.05} />
+            <Noise opacity={0.1} />
             {/* <GodRays /> */}
           </EffectComposer>
           <EffectComposer multisampling={8} autoClear={false}>
