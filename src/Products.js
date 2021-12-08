@@ -107,11 +107,15 @@ const Products = (props) => {
   });
   const houseOnlyMeshes = getUniqeNodesByKey("Mesh", houseOnly);
   const meshesOnly = getMeshesOnly(houseOnlyMeshes);
-  const sidingbump = useTexture("Bump.png");
+  const sidingbump = useTexture("outer_wallsBump.png");
+  const sidingbumpAttic = useTexture("atticBump.png");
   houseOnly.materials["Siding"].color = { b: 0.8, g: 0.4, r: 0.2 };
+  houseOnly.materials["Siding_attic"].color = { b: 0.8, g: 0.4, r: 0.2 };
   houseOnly.materials["Roof"].color = { b: 0.1, g: 0.1, r: 0.1 };
   houseOnly.materials["Siding"].bumpMap = sidingbump;
+  houseOnly.materials["Siding_attic"].bumpMap = sidingbumpAttic;
   houseOnly.materials["Siding"].bumpScale = 0.02;
+  houseOnly.materials["Siding_attic"].bumpScale = 0.02;
   //   debugger;
   const mat = houseOnly.materials["window"];
   mat.opacity = 0.36;
