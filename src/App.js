@@ -40,8 +40,8 @@ function App() {
 
   return (
     <div className="App">
-      <div style={{ display: "flex", height: "100%" }}>
-        <div style={{ width: "45%" }}>
+      <div className="wrapper" style={{ display: "flex", height: "100%" }}>
+        <div className="gui" style={{}}>
           <Tabs
             defaultActiveKey="exhaust"
             // id="uncontrolled-tab-example"
@@ -82,7 +82,7 @@ function App() {
             </Tab>
           </Tabs>
         </div>
-        <div style={{ width: "100%" }}>
+        <div className="canvasWrap" style={{ width: "100%", height: "100%" }}>
           <Canvas shadows={true} shadowMap>
             <Suspense fallback={null}>
               <Products
