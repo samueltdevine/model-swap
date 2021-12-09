@@ -10,16 +10,22 @@ import House from "./House";
 import * as THREE from "three";
 import GuiQuestion from "./Components/GuiQuestion";
 import JiggleArrow from "./Components/JiggleArrow";
-import { EffectComposer, Outline, Noise } from "@react-three/postprocessing";
+import {
+  EffectComposer,
+  Outline,
+  Noise,
+  SSAO,
+} from "@react-three/postprocessing";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Tabs, Tab } from "react-bootstrap";
+import MoveAlongCurve from "./Components/MoveAlongCurve";
 // import { EdgeDetectionMode } from "postprocessing";
 
 import Products from "./Products";
 const Model = () => {
   const gltf = useLoader(GLTFLoader, "./yoo4.glb");
   const part1 = gltf.nodes["cube1"];
-  console.log(part1);
+  // console.log(part1);
   return (
     <>
       <primitive object={part1} scale={0.01} />
@@ -36,7 +42,7 @@ function App() {
   const selectedIntake = activeIntake ? [activeIntake] : undefined;
   const selectedExhaust = activeExhaust ? [activeExhaust] : undefined;
 
-  console.log("selectedIntake", selectedIntake);
+  // console.log("selectedIntake", selectedIntake);
 
   return (
     <div className="App">
@@ -85,13 +91,14 @@ function App() {
         <div className="canvasWrap" style={{ width: "100%", height: "100%" }}>
           <Canvas shadows={true} shadowMap>
             <Suspense fallback={null}>
-              <Products
+              <MoveAlongCurve />
+              {/* <Products
                 onActiveIntake={onActiveIntake}
                 onActiveExhaust={onActiveExhaust}
                 // forwardedRef={childRef}
                 currentExhaustNum={activeExhaustNum}
                 currentIntakeNum={activeIntakeNum}
-              />
+              /> */}
               <Environment preset="sunset" />
             </Suspense>
             <EffectComposer multisampling={8} autoClear={true}>
@@ -105,7 +112,6 @@ function App() {
                   width={500}
                 />
               )}
-              <Noise opacity={0.1} />
               {/* <GodRays /> */}
             </EffectComposer>
             <EffectComposer multisampling={8} autoClear={false}>
@@ -119,6 +125,14 @@ function App() {
                   width={500}
                 />
               )}
+              <SSAO
+                // blendFunction={BlendFunction.MULTIPLY} // Use NORMAL to see the effect
+                samples={31}
+                radius={5000}
+                intensity={300}
+              />
+
+              <Noise opacity={0.01} />
             </EffectComposer>
             <OrbitControls maxPolarAngle={THREE.MathUtils.degToRad(99)} />
           </Canvas>

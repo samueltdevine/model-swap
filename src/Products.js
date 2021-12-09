@@ -1,15 +1,16 @@
 import React, { useCallback, useRef, Suspense } from "react";
-import { useTexture } from "@react-three/drei";
+import { useTexture, useFBX } from "@react-three/drei";
 import { useLoader } from "@react-three/fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+import { FBXLoader } from "three/examples/jsm/loaders/FBXLoader";
 import { TextureLoader } from "three/src/loaders/TextureLoader";
-import { BoxBufferGeometry, Object3D } from "three";
+import { BoxBufferGeometry, Object3D, SplineCurve } from "three";
 import * as THREE from "three";
 import JiggleArrow from "./Components/JiggleArrow";
+
 const Products = (props) => {
   const refIntake = useRef();
   const refExhaust = useRef();
-
   // console.log("houseRef", ref);
   const {
     currentIntakeNum,
@@ -19,8 +20,16 @@ const Products = (props) => {
   } = props;
 
   const houseOnly = useLoader(GLTFLoader, "/houseOnly5.gltf");
-  const products = useLoader(GLTFLoader, "/products4.gltf");
-  const arrow = useLoader(GLTFLoader, "/arrow.gltf");
+  const products = useLoader(GLTFLoader, "/products5.gltf");
+  const arrow = useLoader(GLTFLoader, "/arrow3.gltf");
+  const spline = useLoader(FBXLoader, "/spline.fbx");
+
+  console.log("spline", spline);
+  const splineMat = new THREE.LineBasicMaterial({
+    color: 0x0000ff,
+  });
+
+  arrow.materials[""].side = THREE.DoubleSide;
 
   const degToRad = (deg) => {
     const rad = THREE.MathUtils.degToRad(deg);
@@ -161,6 +170,16 @@ const Products = (props) => {
           shadow-mapSize-width={1024}
           position={[3, 2, 3]}
         />
+        <line position={[0, -2.5, -10]} geometry={spline.children[0].geometry}>
+          <lineBasicMaterial
+            attach="material"
+            color={"#9c88ff"}
+            linewidth={100}
+            linecap={"round"}
+            linejoin={"round"}
+          />
+        </line>
+        {/* <line geometry={spline.children[0].geometry} material={splineMat} /> */}
         <group scale={0.003} position={[1, -2, 0]}>
           <primitive object={houseOnly.scene} />
 
@@ -236,7 +255,7 @@ const Products = (props) => {
               <JiggleArrow
                 obj={arrow}
                 color={"blue"}
-                position={[-1000, 775, 50]}
+                position={[-1000, 625, 50]}
                 rotation={[degToRad(0), degToRad(90), degToRad(90)]}
               />
             </group>

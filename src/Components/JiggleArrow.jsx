@@ -5,7 +5,7 @@ import { MeshBasicMaterial } from "three";
 import * as THREE from "three";
 const JiggleArrow = (props) => {
   const { position, rotation, color, obj } = props;
-  const arrow = useLoader(GLTFLoader, "/arrow.gltf");
+  const arrow = useLoader(GLTFLoader, "/arrow3.gltf");
   // debugger;
   let animatedPram = 0;
   // const animatedPram = 0;
@@ -15,7 +15,7 @@ const JiggleArrow = (props) => {
       0,
       0,
 
-      Math.sin(2 * state.clock.getElapsedTime()) * 0.1
+      Math.sin(2 * state.clock.getElapsedTime()) * 0.3
     );
   });
   const blueMat = new MeshBasicMaterial({ color: "blue" });
