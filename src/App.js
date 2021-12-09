@@ -22,6 +22,7 @@ import MoveAlongCurve from "./Components/MoveAlongCurve";
 // import { EdgeDetectionMode } from "postprocessing";
 
 import Products from "./Products";
+import Arrow from "./Components/Arrow";
 const Model = () => {
   const gltf = useLoader(GLTFLoader, "./yoo4.glb");
   const part1 = gltf.nodes["cube1"];
@@ -91,7 +92,8 @@ function App() {
         <div className="canvasWrap" style={{ width: "100%", height: "100%" }}>
           <Canvas shadows={true} shadowMap>
             <Suspense fallback={null}>
-              <MoveAlongCurve />
+              <Arrow />
+              {/* <MoveAlongCurve /> */}
               {/* <Products
                 onActiveIntake={onActiveIntake}
                 onActiveExhaust={onActiveExhaust}
