@@ -21,7 +21,7 @@ const Products = (props) => {
   } = props;
 
   const houseOnly = useLoader(GLTFLoader, "/houseOnly5.gltf");
-  const products = useLoader(GLTFLoader, "/products5.gltf");
+  const products = useLoader(GLTFLoader, "/products6.gltf");
   const arrow = useLoader(GLTFLoader, "/arrow3.gltf");
 
   const degToRad = (deg) => {
@@ -164,7 +164,10 @@ const Products = (props) => {
           position={[3, 2, 3]}
         />
 
-        <group scale={0.003} position={[1.2, -2, 0]}>
+        <group
+          scale={0.003}
+          // position={[1.2, -2, 0]}
+        >
           <primitive object={houseOnly.scene} />
 
           <primitive

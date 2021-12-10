@@ -10,9 +10,17 @@ const MoveAlongCurve = (props) => {
   const { curve, offsetAmmt, height, material, color } = props;
   const capHeight = height;
   const mat = material;
+  const lineHeight = 0.04;
   //   console.log("I'm a re-render!!!");
   const { flow } = useMemo(() => {
-    const geometry = new THREE.BoxGeometry(0.2, 0.08, 0.05, 10, 10, 10);
+    const geometry = new THREE.BoxGeometry(
+      lineHeight,
+      0.02,
+      0.0125,
+      10,
+      10,
+      10
+    );
     const material = new THREE.MeshBasicMaterial({
       color: color,
       wireframe: false,
@@ -28,19 +36,20 @@ const MoveAlongCurve = (props) => {
     return { flow };
   }, []);
 
+  const capHeightHalf = capHeight / 2;
   //   const length = flow.uniforms.spineLength;
-  const maxCap = flow.uniforms.spineLength.value - capHeight;
+  const maxCap = flow.uniforms.spineLength.value - capHeightHalf;
   // Clamp number between two values with the following line:
   useFrame(() => {
     // flow.moveAlongCurve(0.01);
     // const offset = ;
 
     if (flow.uniforms.spineOffset.value < maxCap) {
-      flow.uniforms.spineOffset.value = flow.uniforms.spineOffset.value + 0.01;
+      flow.uniforms.spineOffset.value = flow.uniforms.spineOffset.value + 0.005;
     }
 
     if (flow.uniforms.spineOffset.value > maxCap - 0.01) {
-      flow.uniforms.spineOffset.value = 0.2;
+      flow.uniforms.spineOffset.value = 0 + lineHeight;
     }
     // console.log(flow.uniforms.spineOffset.value);
     // flow.uniforms.pathOffset.value = offset 0;
