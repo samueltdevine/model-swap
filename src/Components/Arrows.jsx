@@ -13,7 +13,7 @@ const Arrows = (props) => {
     return rad;
   };
 
-  const fbx = useLoader(FBXLoader, "/splines4.fbx");
+  const fbx = useLoader(FBXLoader, "/splines5.fbx");
   const splineArray = fbx.children;
 
   const getByString = (str, array) => {
