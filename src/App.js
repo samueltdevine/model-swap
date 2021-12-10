@@ -99,6 +99,7 @@ function App() {
                 currentExhaustNum={activeExhaustNum}
                 currentIntakeNum={activeIntakeNum}
               />
+
               <Environment background preset="sunset" />
             </Suspense>
             <EffectComposer multisampling={8} autoClear={true}>
@@ -134,7 +135,11 @@ function App() {
 
               <Noise opacity={0.01} />
             </EffectComposer>
-            <OrbitControls maxPolarAngle={THREE.MathUtils.degToRad(99)} />
+            <OrbitControls
+              target={[-1, 1, 0]}
+              maxDistance={6}
+              maxPolarAngle={THREE.MathUtils.degToRad(99)}
+            />
           </Canvas>
         </div>
       </div>
