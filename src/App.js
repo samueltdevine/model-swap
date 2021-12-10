@@ -87,7 +87,7 @@ function App() {
           <Canvas shadows={true} shadowMap>
             <Suspense fallback={null}>
               <Arrows
-                activeIntakeNum={activeExhaustNum}
+                activeExhaustNum={activeExhaustNum}
                 activeIntakeNum={activeIntakeNum}
               />
               {/* <Arrow scale={1} /> */}
