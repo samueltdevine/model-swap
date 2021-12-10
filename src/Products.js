@@ -7,6 +7,7 @@ import { TextureLoader } from "three/src/loaders/TextureLoader";
 import { BoxBufferGeometry, Object3D, SplineCurve } from "three";
 import * as THREE from "three";
 import JiggleArrow from "./Components/JiggleArrow";
+import Arrow from "./Components/Arrow";
 
 const Products = (props) => {
   const refIntake = useRef();
@@ -22,14 +23,6 @@ const Products = (props) => {
   const houseOnly = useLoader(GLTFLoader, "/houseOnly5.gltf");
   const products = useLoader(GLTFLoader, "/products5.gltf");
   const arrow = useLoader(GLTFLoader, "/arrow3.gltf");
-  const spline = useLoader(FBXLoader, "/spline.fbx");
-
-  console.log("spline", spline);
-  const splineMat = new THREE.LineBasicMaterial({
-    color: 0x0000ff,
-  });
-
-  arrow.materials[""].side = THREE.DoubleSide;
 
   const degToRad = (deg) => {
     const rad = THREE.MathUtils.degToRad(deg);
@@ -170,17 +163,8 @@ const Products = (props) => {
           shadow-mapSize-width={1024}
           position={[3, 2, 3]}
         />
-        <line position={[0, -2.5, -10]} geometry={spline.children[0].geometry}>
-          <lineBasicMaterial
-            attach="material"
-            color={"#9c88ff"}
-            linewidth={100}
-            linecap={"round"}
-            linejoin={"round"}
-          />
-        </line>
-        {/* <line geometry={spline.children[0].geometry} material={splineMat} /> */}
-        <group scale={0.003} position={[1, -2, 0]}>
+
+        <group scale={0.003} position={[1.2, -2, 0]}>
           <primitive object={houseOnly.scene} />
 
           <primitive
@@ -193,7 +177,8 @@ const Products = (props) => {
             onBeforeRender={(e) => onActiveIntake(refIntake)}
             object={intakes[currentIntakeNum - 1]}
           />
-          {currentExhaustNum <= 2 && (
+
+          {/* {currentExhaustNum <= 2 && (
             <group>
               <JiggleArrow
                 obj={arrow}
@@ -291,7 +276,7 @@ const Products = (props) => {
                 rotation={[degToRad(25), degToRad(180), 0]}
               />
             </group>
-          )}
+          )} */}
         </group>
       </Suspense>
     </>

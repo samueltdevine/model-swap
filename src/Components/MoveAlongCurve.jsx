@@ -7,17 +7,14 @@ import { Flow } from "three/examples/jsm/modifiers/CurveModifier";
 import { mapLinear } from "three/src/math/MathUtils";
 
 const MoveAlongCurve = (props) => {
-  const { curve, offsetAmmt, height } = props;
+  const { curve, offsetAmmt, height, material, color } = props;
   const capHeight = height;
+  const mat = material;
   //   console.log("I'm a re-render!!!");
   const { flow } = useMemo(() => {
-    const testCyl = new THREE.CylinderBufferGeometry(1, 1, 1, 12);
-    const mat = new THREE.MeshBasicMaterial({ color: "red" });
-    const testCylMesh = new THREE.Mesh(testCyl, mat);
-
-    const geometry = new THREE.BoxGeometry(0.1, 0.08, 0.05);
-    const material = new THREE.MeshPhongMaterial({
-      color: 0x99ffff,
+    const geometry = new THREE.BoxGeometry(0.2, 0.08, 0.05, 10, 10, 10);
+    const material = new THREE.MeshBasicMaterial({
+      color: color,
       wireframe: false,
     });
     const objectToCurve = new THREE.Mesh(geometry, material);

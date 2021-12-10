@@ -5,11 +5,8 @@ import { useLoader } from "@react-three/fiber";
 import { Environment, OrbitControls } from "@react-three/drei";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { Suspense, useState, useRef, useEffect } from "react";
-import Yoo from "./Yoo";
-import House from "./House";
 import * as THREE from "three";
 import GuiQuestion from "./Components/GuiQuestion";
-import JiggleArrow from "./Components/JiggleArrow";
 import {
   EffectComposer,
   Outline,
@@ -18,11 +15,8 @@ import {
 } from "@react-three/postprocessing";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Tabs, Tab } from "react-bootstrap";
-import MoveAlongCurve from "./Components/MoveAlongCurve";
-// import { EdgeDetectionMode } from "postprocessing";
-
+import Arrows from "./Components/Arrows";
 import Products from "./Products";
-import Arrow from "./Components/Arrow";
 const Model = () => {
   const gltf = useLoader(GLTFLoader, "./yoo4.glb");
   const part1 = gltf.nodes["cube1"];
@@ -92,16 +86,20 @@ function App() {
         <div className="canvasWrap" style={{ width: "100%", height: "100%" }}>
           <Canvas shadows={true} shadowMap>
             <Suspense fallback={null}>
-              <Arrow />
+              <Arrows
+                currentExhaustNum={activeExhaustNum}
+                currentIntakeNum={activeIntakeNum}
+              />
+              {/* <Arrow scale={1} /> */}
               {/* <MoveAlongCurve /> */}
-              {/* <Products
+              <Products
                 onActiveIntake={onActiveIntake}
                 onActiveExhaust={onActiveExhaust}
                 // forwardedRef={childRef}
                 currentExhaustNum={activeExhaustNum}
                 currentIntakeNum={activeIntakeNum}
-              /> */}
-              <Environment preset="sunset" />
+              />
+              <Environment background preset="sunset" />
             </Suspense>
             <EffectComposer multisampling={8} autoClear={true}>
               {selectedIntake && (
