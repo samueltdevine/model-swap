@@ -100,7 +100,7 @@ function App() {
                 currentIntakeNum={activeIntakeNum}
               />
 
-              <Environment background preset="sunset" />
+              <Environment preset="sunset" />
             </Suspense>
             <EffectComposer multisampling={8} autoClear={true}>
               {selectedIntake && (
