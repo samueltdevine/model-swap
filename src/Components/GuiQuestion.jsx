@@ -48,8 +48,7 @@ const GuiQuestion = (props, children) => {
       <h1>{props.children}</h1>
       <label
         // onPointerOver={(e) => console.log("hit1")}
-        onMouseEnter={(e) => setActivePreview([1, type])}
-        onMouseLeave={(e) => setActivePreview(0)}
+        onClick={(e) => setActivePreview([1, type])}
       >
         <input
           type="radio"
@@ -63,10 +62,7 @@ const GuiQuestion = (props, children) => {
         />
         {names[0]}
       </label>
-      <label
-        onMouseEnter={(e) => setActivePreview([2, type])}
-        onMouseLeave={(e) => setActivePreview(0)}
-      >
+      <label onClick={(e) => setActivePreview([2, type])}>
         <input
           type="radio"
           name="2"
@@ -79,10 +75,7 @@ const GuiQuestion = (props, children) => {
         />
         {names[1]}
       </label>
-      <label
-        onMouseEnter={(e) => setActivePreview([3, type])}
-        onMouseLeave={(e) => setActivePreview(0)}
-      >
+      <label onClick={(e) => setActivePreview([3, type])}>
         <input
           type="radio"
           name="3"
@@ -95,10 +88,7 @@ const GuiQuestion = (props, children) => {
         />
         {names[2]}
       </label>
-      <label
-        onMouseEnter={(e) => setActivePreview([4, type])}
-        onMouseLeave={(e) => setActivePreview(0)}
-      >
+      <label onClick={(e) => setActivePreview([4, type])}>
         <input
           type="radio"
           name="4"
@@ -111,10 +101,7 @@ const GuiQuestion = (props, children) => {
         />
         {names[3]}
       </label>
-      <label
-        onMouseEnter={(e) => setActivePreview([5, type])}
-        onMouseLeave={(e) => setActivePreview(0)}
-      >
+      <label onClick={(e) => setActivePreview([5, type])}>
         <input
           type="radio"
           name="5"
@@ -127,10 +114,7 @@ const GuiQuestion = (props, children) => {
         />
         {names[4]}
       </label>
-      <label
-        onMouseEnter={(e) => setActivePreview([6, type])}
-        onMouseLeave={(e) => setActivePreview(0)}
-      >
+      <label onClick={(e) => setActivePreview([6, type])}>
         <input
           type="radio"
           name="6"

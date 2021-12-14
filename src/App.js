@@ -18,11 +18,12 @@ import { Tabs, Tab } from "react-bootstrap";
 import Arrows from "./Components/Arrows";
 import Products from "./Products";
 import CameraGuide from "./Components/CameraGuide";
+import CameraLogger from "./Components/CameraLogger";
 
 function App() {
   const [activeExhaustNum, setActiveExhaustNum] = useState(0);
   const [activeIntakeNum, setActiveIntakeNum] = useState(1);
-  const [activePreview, setActivePreview] = useState(undefined);
+  const [activePreview, setActivePreview] = useState(0);
   const [activeIntake, onActiveIntake] = useState(null);
   const [activeExhaust, onActiveExhaust] = useState(null);
   const selectedIntake = activeIntake ? [activeIntake] : undefined;
@@ -80,7 +81,7 @@ function App() {
   //   return <perspectiveCamera {...props} />;
   // };
 
-  // console.log("selectedIntake", selectedIntake);
+  console.log("Active", activePreview);
 
   return (
     <div className="App">
@@ -146,7 +147,7 @@ function App() {
               <Environment preset="sunset" />
             </Suspense>
             <EffectComposer multisampling={8} autoClear={true}>
-              {selectedIntake && (
+              {/* {selectedIntake && (
                 <Outline
                   blur
                   selection={selectedIntake}
@@ -155,11 +156,11 @@ function App() {
                   edgeStrength={1}
                   width={500}
                 />
-              )}
+              )} */}
               {/* <GodRays /> */}
             </EffectComposer>
             <EffectComposer multisampling={8} autoClear={false}>
-              {selectedExhaust && (
+              {/* {selectedExhaust && (
                 <Outline
                   blur
                   hiddenEdgeColor="white"
@@ -168,7 +169,7 @@ function App() {
                   edgeStrength={1}
                   width={500}
                 />
-              )}
+              )} */}
               <SSAO
                 // blendFunction={BlendFunction.MULTIPLY} // Use NORMAL to see the effect
                 samples={31}
@@ -183,7 +184,11 @@ function App() {
               maxDistance={6}
               maxPolarAngle={THREE.MathUtils.degToRad(99)}
             /> */}
-            <CameraGuide activeIntakeNum={activeIntakeNum} />
+            {/* <CameraLogger /> */}
+            <CameraGuide
+              lastSelected={activePreview}
+              activeIntakeNum={activeIntakeNum}
+            />
           </Canvas>
         </div>
       </div>
