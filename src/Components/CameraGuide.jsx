@@ -25,16 +25,68 @@ const CameraGuide = (props) => {
     state.camera.updateProjectionMatrix();
   });
 
+  const pram1 = 0.1;
+  const pram2 = 1;
   useFrame(({ clock, camera }) => {
+    const x = THREE.MathUtils.damp(
+      camera.position.x,
+      matrices[lastNum].Vector3.x,
+      pram1,
+      pram2
+    );
+    const y = THREE.MathUtils.damp(
+      camera.position.y,
+      matrices[lastNum].Vector3.y,
+      pram1,
+      pram2
+    );
+    const z = THREE.MathUtils.damp(
+      camera.position.z,
+      matrices[lastNum].Vector3.z,
+      pram1,
+      pram2
+    );
+
+    const qx = THREE.MathUtils.damp(
+      camera.quaternion.x,
+      matrices[lastNum].Quaternion.x,
+      pram1,
+      pram2
+    );
+    const qy = THREE.MathUtils.damp(
+      camera.quaternion.y,
+      matrices[lastNum].Quaternion.y,
+      pram1,
+      pram2
+    );
+    const qz = THREE.MathUtils.damp(
+      camera.quaternion.z,
+      matrices[lastNum].Quaternion.z,
+      pram1,
+      pram2
+    );
+    const qw = THREE.MathUtils.damp(
+      camera.quaternion.w,
+      matrices[lastNum].Quaternion.w,
+      pram1,
+      pram2
+    );
+    const dynamicFov = THREE.MathUtils.damp(
+      camera.fov,
+      matrices[lastNum].Fov,
+      pram1,
+      pram2
+    );
+
     if (lastNum !== undefined) {
-      camera.position.x = matrices[lastNum].Vector3.x;
-      camera.position.y = matrices[lastNum].Vector3.y;
-      camera.position.z = matrices[lastNum].Vector3.z;
-      camera.quaternion.x = matrices[lastNum].Quaternion.x;
-      camera.quaternion.y = matrices[lastNum].Quaternion.y;
-      camera.quaternion.z = matrices[lastNum].Quaternion.z;
-      camera.quaternion.w = matrices[lastNum].Quaternion.w;
-      camera.fov = matrices[lastNum].Fov;
+      camera.position.x = x;
+      camera.position.y = y;
+      camera.position.z = z;
+      camera.quaternion.x = qx;
+      camera.quaternion.y = qy;
+      camera.quaternion.z = qz;
+      camera.quaternion.w = qw;
+      camera.fov = dynamicFov;
     }
 
     camera.updateProjectionMatrix();
@@ -186,7 +238,7 @@ const matrices = {
       z: 0.005553620842381282,
       w: 0.8668475710499204,
     },
-    Fov: 75,
+    Fov: 80,
   },
   3: {
     Vector3: {
@@ -200,7 +252,7 @@ const matrices = {
       z: 0.005553620842381282,
       w: 0.8668475710499204,
     },
-    Fov: 75,
+    Fov: 80,
   },
   4: {
     Vector3: {
@@ -214,7 +266,7 @@ const matrices = {
       z: 0.005553620842381282,
       w: 0.8668475710499204,
     },
-    Fov: 75,
+    Fov: 80,
   },
   5: {
     Vector3: {
@@ -228,7 +280,7 @@ const matrices = {
       z: -0.03418975171773629,
       w: 0.8727879629281469,
     },
-    Fov: 75,
+    Fov: 80,
   },
   6: {
     Vector3: {
@@ -242,12 +294,12 @@ const matrices = {
       z: 0.005553620842381282,
       w: 0.8668475710499204,
     },
-    Fov: 75,
+    Fov: 80,
   },
   7: {
     Vector3: {
-      x: -2.8605714796519157,
-      y: 2.7992777791149646,
+      x: -3.8605714796519157,
+      y: 3.37992777791149646,
       z: 0.27692242922508603,
     },
     Quaternion: {
@@ -256,12 +308,12 @@ const matrices = {
       z: -0.16344501780507495,
       w: 0.7220975883947421,
     },
-    Fov: 75,
+    Fov: 80,
   },
   8: {
     Vector3: {
-      x: -2.8605714796519157,
-      y: 2.7992777791149646,
+      x: -3.8605714796519157,
+      y: 3.37992777791149646,
       z: 0.27692242922508603,
     },
     Quaternion: {
@@ -270,12 +322,12 @@ const matrices = {
       z: -0.16344501780507495,
       w: 0.7220975883947421,
     },
-    Fov: 75,
+    Fov: 80,
   },
   9: {
     Vector3: {
-      x: -2.869739864650266,
-      y: 2.7564238529690632,
+      x: -3.0869739864650266,
+      y: 3.07564238529690632,
       z: -0.3085620661380885,
     },
     Quaternion: {
@@ -284,7 +336,7 @@ const matrices = {
       z: -0.178949017032828,
       w: 0.6320021061414618,
     },
-    Fov: 75,
+    Fov: 80,
   },
   10: {
     Vector3: {
@@ -298,7 +350,7 @@ const matrices = {
       z: 0.20968810182146747,
       w: -0.32675804281650866,
     },
-    Fov: 75,
+    Fov: 80,
   },
   11: {
     Vector3: {
@@ -312,7 +364,7 @@ const matrices = {
       z: 0.20968810182146747,
       w: -0.32675804281650866,
     },
-    Fov: 75,
+    Fov: 80,
   },
   12: {
     Vector3: {
