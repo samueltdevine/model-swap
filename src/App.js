@@ -17,7 +17,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Tabs, Tab } from "react-bootstrap";
 import Arrows from "./Components/Arrows";
 import Products from "./Products";
-// import CameraGuide from "./Components/CameraGuide";
+import CameraGuide from "./Components/CameraGuide";
 
 function App() {
   const [activeExhaustNum, setActiveExhaustNum] = useState(0);
@@ -28,30 +28,57 @@ function App() {
   const selectedIntake = activeIntake ? [activeIntake] : undefined;
   const selectedExhaust = activeExhaust ? [activeExhaust] : undefined;
 
-  const CameraGuide = (props) => {
-    // const ref = useRef();
-    const { camera } = useThree();
-    // camera.fov = 45;
-    // // Make the camera known to the system
-    // useEffect(() => void set({ camera: ref.current }), []);
-    // // Update it every frame
-    useFrame(() => {
-      camera.updateMatrixWorld();
-      camera.updateProjectionMatrix();
-    });
+  // const CameraGuide = (props) => {
+  //   // const ref = useRef();
+  //   const { camera } = useThree();
 
-    useFrame((state) => {
-      state.camera.fov = 45;
-      // state.camera.updateProjectionMatrix()
-    });
-    // useFrame(() => {
-    console.log("camera", camera);
-    console.log("camera pos", camera.position);
-    console.log("camera qua", camera.quaternion);
-    // });
-    // return <></>;
-    return <perspectiveCamera {...props} />;
-  };
+  //   const matrices = {
+  //     intake1: {
+  //       Vector3: {
+  //         x: -5.472475046084495,
+  //         y: 2.6551389057519588,
+  //         z: 2.063366706336503,
+  //       },
+  //       Quaternion: {
+  //         _x: -0.13593025779965517,
+  //         _y: -0.5319543318034656,
+  //         _z: -0.08698763634244487,
+  //         _w: 0.8312524917337706,
+  //       },
+  //     },
+  //     intake2: {
+  //       Vector3: {
+  //         x: -5.472475046084495,
+  //         y: 2.6551389057519588,
+  //         z: 2.063366706336503,
+  //       },
+  //       Quaternion: {
+  //         _x: -0.13593025779965517,
+  //         _y: -0.5319543318034656,
+  //         _z: -0.08698763634244487,
+  //         _w: 0.8312524917337706,
+  //       },
+  //     },
+  //   };
+
+  //   useFrame((state) => {
+  //     state.camera.fov = 38;
+  //     // state.camera.updateProjectionMatrix()
+  //   });
+
+  //   useFrame(() => {
+  //     camera.updateMatrixWorld();
+  //     camera.updateProjectionMatrix();
+  //   });
+
+  //   // useFrame(() => {
+  //   console.log("camera", camera);
+  //   console.log("camera pos", camera.position);
+  //   console.log("camera qua", camera.quaternion);
+  //   // });
+  //   // return <></>;
+  //   return <perspectiveCamera {...props} />;
+  // };
 
   // console.log("selectedIntake", selectedIntake);
 
@@ -151,12 +178,12 @@ function App() {
 
               <Noise opacity={0.01} />
             </EffectComposer>
-            <OrbitControls
+            {/* <OrbitControls
               target={[-1, 1, 0]}
               maxDistance={6}
               maxPolarAngle={THREE.MathUtils.degToRad(99)}
-            />
-            <CameraGuide />
+            /> */}
+            <CameraGuide activeIntakeNum={activeIntakeNum} />
           </Canvas>
         </div>
       </div>
