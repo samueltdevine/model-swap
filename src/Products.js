@@ -117,9 +117,9 @@ const Products = (props) => {
   });
   const houseOnlyMeshes = getUniqeNodesByKey("Mesh", houseOnly);
   const meshesOnly = getMeshesOnly(houseOnlyMeshes);
-  const sidingNormal = useLoader(TextureLoader, "NormalMap1.png");
+  const sidingNormal = useLoader(TextureLoader, "NormalMap6.png");
   //   const sidingbump = useTexture("outer_wallsBump.png");
-  const sidingNormalAttic = useTexture("NormalMap1.png");
+  const sidingNormalAttic = useTexture("NormalMap6.png");
   houseOnly.materials["Siding"].color = { b: 0.8, g: 0.8, r: 0.8 };
   houseOnly.materials["Siding_attic"].color = { b: 0.8, g: 0.8, r: 0.8 };
   houseOnly.materials["Roof"].color = { b: 0.2, g: 0.2, r: 0.2 };
