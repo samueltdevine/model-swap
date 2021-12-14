@@ -1,8 +1,8 @@
 import logo from "./logo.svg";
 import "./App.css";
 import { Canvas } from "@react-three/fiber";
-import { useLoader } from "@react-three/fiber";
-import { Environment, OrbitControls } from "@react-three/drei";
+import { useLoader, useThree, useFrame } from "@react-three/fiber";
+import { CubeCamera, Environment, OrbitControls } from "@react-three/drei";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { Suspense, useState, useRef, useEffect } from "react";
 import * as THREE from "three";
@@ -17,16 +17,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Tabs, Tab } from "react-bootstrap";
 import Arrows from "./Components/Arrows";
 import Products from "./Products";
-const Model = () => {
-  const gltf = useLoader(GLTFLoader, "./yoo4.glb");
-  const part1 = gltf.nodes["cube1"];
-  // console.log(part1);
-  return (
-    <>
-      <primitive object={part1} scale={0.01} />
-    </>
-  );
-};
+// import CameraGuide from "./Components/CameraGuide";
 
 function App() {
   const [activeExhaustNum, setActiveExhaustNum] = useState(0);
@@ -36,6 +27,31 @@ function App() {
   const [activeExhaust, onActiveExhaust] = useState(null);
   const selectedIntake = activeIntake ? [activeIntake] : undefined;
   const selectedExhaust = activeExhaust ? [activeExhaust] : undefined;
+
+  const CameraGuide = (props) => {
+    // const ref = useRef();
+    const { camera } = useThree();
+    // camera.fov = 45;
+    // // Make the camera known to the system
+    // useEffect(() => void set({ camera: ref.current }), []);
+    // // Update it every frame
+    useFrame(() => {
+      camera.updateMatrixWorld();
+      camera.updateProjectionMatrix();
+    });
+
+    useFrame((state) => {
+      state.camera.fov = 45;
+      // state.camera.updateProjectionMatrix()
+    });
+    // useFrame(() => {
+    console.log("camera", camera);
+    console.log("camera pos", camera.position);
+    console.log("camera qua", camera.quaternion);
+    // });
+    // return <></>;
+    return <perspectiveCamera {...props} />;
+  };
 
   // console.log("selectedIntake", selectedIntake);
 
@@ -140,6 +156,7 @@ function App() {
               maxDistance={6}
               maxPolarAngle={THREE.MathUtils.degToRad(99)}
             />
+            <CameraGuide />
           </Canvas>
         </div>
       </div>
