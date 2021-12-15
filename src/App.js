@@ -178,9 +178,9 @@ function App() {
                 intensity={100}
               /> */}
               <DepthOfField
-                focusDistance={0.96} // where to focus
-                focalLength={0.2} // focal length
-                bokehScale={4} // bokeh size
+                focusDistance={0.999} // where to focus
+                focalLength={0.5} // focal length
+                bokehScale={2} // bokeh size
               />
               <Noise opacity={0.01} />
             </EffectComposer>
