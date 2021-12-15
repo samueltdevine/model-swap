@@ -12,6 +12,7 @@ import {
   Outline,
   Noise,
   SSAO,
+  DepthOfField,
 } from "@react-three/postprocessing";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Tabs, Tab } from "react-bootstrap";
@@ -176,7 +177,11 @@ function App() {
                 radius={0.01}
                 intensity={100}
               /> */}
-
+              <DepthOfField
+                focusDistance={0.96} // where to focus
+                focalLength={0.2} // focal length
+                bokehScale={4} // bokeh size
+              />
               <Noise opacity={0.01} />
             </EffectComposer>
             {/* <OrbitControls

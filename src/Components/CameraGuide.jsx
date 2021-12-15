@@ -22,7 +22,7 @@ const CameraGuide = (props) => {
 
   useFrame((state) => {
     state.camera.fov = 50;
-    state.camera.near = 0.0001;
+    // state.camera.near = 0.0001;
     state.camera.updateProjectionMatrix();
   });
 
