@@ -177,11 +177,11 @@ function App() {
                 radius={0.01}
                 intensity={100}
               /> */}
-              <DepthOfField
+              {/* <DepthOfField
                 focusDistance={0.9} // where to focus
                 focalLength={0.3} // focal length
                 bokehScale={2} // bokeh size
-              />
+              /> */}
               <Noise opacity={0.01} />
             </EffectComposer>
             {/* <OrbitControls
