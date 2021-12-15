@@ -21,7 +21,7 @@ const Products = (props) => {
   } = props;
 
   const houseOnly = useLoader(GLTFLoader, "/houseOnly5.gltf");
-  const products = useLoader(GLTFLoader, "/products6.gltf");
+  const products = useLoader(GLTFLoader, "/products7.gltf");
   const arrow = useLoader(GLTFLoader, "/arrow3.gltf");
 
   const degToRad = (deg) => {
