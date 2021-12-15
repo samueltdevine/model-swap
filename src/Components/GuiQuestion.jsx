@@ -130,7 +130,7 @@ const GuiQuestion = (props, children) => {
       </label>
       <label
         // onPointerOver={(e) => console.log("hit1")}
-        onClick={(e) => setActivePreview([0, "reset"])}
+        onClick={(e) => setActivePreview([0, type])}
       >
         <input
           type="radio"

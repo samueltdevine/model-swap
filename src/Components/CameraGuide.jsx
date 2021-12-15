@@ -20,6 +20,14 @@ const CameraGuide = (props) => {
   if (lastSelected[1] === "exhaust") {
     lastNum = lastSelected[0] + 6;
   }
+  if (lastSelected[0] === 0) {
+    if (lastSelected[1] === "intake") {
+      lastNum = 13;
+    }
+    if (lastSelected[1] === "exhaust") {
+      lastNum = 14;
+    }
+  }
   //   debugger;
   console.log("last", lastNum);
 

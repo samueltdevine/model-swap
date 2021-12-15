@@ -96,8 +96,8 @@ function App() {
               justifyContent: "flex-end",
             }}
           >
-            <label onClick={() => setActivePreview([13, "reset"])}>Front</label>
             <label onClick={() => setActivePreview([14, "reset"])}>Back</label>
+            <label onClick={() => setActivePreview([13, "reset"])}>Front</label>
           </div>
           <Tabs
             defaultActiveKey="exhaust"
