@@ -170,12 +170,12 @@ function App() {
                   width={500}
                 />
               )} */}
-              <SSAO
+              {/* <SSAO
                 // blendFunction={BlendFunction.MULTIPLY} // Use NORMAL to see the effect
-                samples={31}
-                radius={5000}
-                intensity={300}
-              />
+                samples={100}
+                radius={0.01}
+                intensity={100}
+              /> */}
 
               <Noise opacity={0.01} />
             </EffectComposer>
@@ -184,7 +184,7 @@ function App() {
               maxDistance={6}
               maxPolarAngle={THREE.MathUtils.degToRad(99)}
             /> */}
-            {/* <CameraLogger /> */}
+            <CameraLogger />
             <CameraGuide
               lastSelected={activePreview}
               activeIntakeNum={activeIntakeNum}
