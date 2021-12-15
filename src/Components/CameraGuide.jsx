@@ -14,6 +14,9 @@ const CameraGuide = (props) => {
   if (lastSelected[1] === "intake") {
     lastNum = lastSelected[0];
   }
+  if (lastSelected[1] === "reset") {
+    lastNum = lastSelected[0];
+  }
   if (lastSelected[1] === "exhaust") {
     lastNum = lastSelected[0] + 6;
   }
@@ -380,6 +383,34 @@ const matrices = {
       w: 0.8312524917337706,
     },
     Fov: 40,
+  },
+  13: {
+    Vector3: {
+      x: -4.79268157629895,
+      y: 2.2098725598929694,
+      z: 4.705432133131518,
+    },
+    Quaternion: {
+      x: -0.12366182583476157,
+      y: -0.33141276195337177,
+      z: -0.043864216947459775,
+      w: 0.934317539446433,
+    },
+    Fov: 45,
+  },
+  14: {
+    Vector3: {
+      x: -5.490067540934238,
+      y: 2.284606117580961,
+      z: -2.2779553552522507,
+    },
+    Quaternion: {
+      x: -0.06518638180256404,
+      y: -0.8455454404625233,
+      z: -0.10616673080474427,
+      w: 0.5191649728272898,
+    },
+    Fov: 45,
   },
 };
 

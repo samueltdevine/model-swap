@@ -27,12 +27,27 @@ body {
   z-index: 999;
   /* background-color: ; */
 }
+.gui-camera-switch {
+  z-index: 9;
+  position: fixed;
+  bottom: 0;
+  display: "flex" !important;
+  flex-direction: "row" !important;
+  justify-content: "flex-end" !important;
+}
 
+.gui-camera-switch label {
+  padding-left: 5px;
+  padding-right: 5px;
+  background-color: white;
+
+  margin: 5px;
+}
 .gui-body input {
   display: none;
 }
 
-.gui-body label {
+.gui label {
   display: flex;
   align-items: center;
   justify-content: center;

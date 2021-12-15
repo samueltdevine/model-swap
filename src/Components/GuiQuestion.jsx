@@ -41,11 +41,12 @@ const GuiQuestion = (props, children) => {
   }
   return (
     <div
-      style={{ borderRight: "1px solid #dee2e6" }}
+      // style={{ borderRight: "1px solid #dee2e6" }}
       className="gui-body"
       // style={{ display: "flex", flexDirection: "column" }}
     >
       <h1>{props.children}</h1>
+
       <label
         // onPointerOver={(e) => console.log("hit1")}
         onClick={(e) => setActivePreview([1, type])}
@@ -126,6 +127,22 @@ const GuiQuestion = (props, children) => {
           }}
         />
         {names[5]}
+      </label>
+      <label
+        // onPointerOver={(e) => console.log("hit1")}
+        onClick={(e) => setActivePreview([0, "reset"])}
+      >
+        <input
+          type="radio"
+          name="None"
+          value={0}
+          checked={activeNum === 0}
+          onChange={(event) => {
+            checkAnimation(event, answer, 0);
+            setActiveNum(0);
+          }}
+        />
+        none
       </label>
     </div>
   );

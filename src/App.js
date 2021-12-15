@@ -88,6 +88,17 @@ function App() {
     <div className="App">
       <div className="wrapper" style={{ display: "flex", height: "100%" }}>
         <div className="gui" style={{}}>
+          <div
+            className={"gui-camera-switch"}
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "flex-end",
+            }}
+          >
+            <label onClick={() => setActivePreview([13, "reset"])}>Front</label>
+            <label onClick={() => setActivePreview([14, "reset"])}>Back</label>
+          </div>
           <Tabs
             defaultActiveKey="exhaust"
             // id="uncontrolled-tab-example"
