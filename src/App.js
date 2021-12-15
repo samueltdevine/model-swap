@@ -178,8 +178,8 @@ function App() {
                 intensity={100}
               /> */}
               <DepthOfField
-                focusDistance={0.999} // where to focus
-                focalLength={0.5} // focal length
+                focusDistance={0.9} // where to focus
+                focalLength={0.3} // focal length
                 bokehScale={2} // bokeh size
               />
               <Noise opacity={0.01} />
