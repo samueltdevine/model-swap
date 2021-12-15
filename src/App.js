@@ -200,7 +200,7 @@ function App() {
               maxDistance={6}
               maxPolarAngle={THREE.MathUtils.degToRad(99)}
             /> */}
-            <CameraLogger />
+            {/* <CameraLogger /> */}
             <CameraGuide
               lastSelected={activePreview}
               activeIntakeNum={activeIntakeNum}

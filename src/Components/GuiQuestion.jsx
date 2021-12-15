@@ -139,7 +139,7 @@ const GuiQuestion = (props, children) => {
           checked={activeNum === 0}
           onChange={(event) => {
             checkAnimation(event, answer, 0);
-            setActiveNum(0);
+            setActiveNum(null);
           }}
         />
         none

@@ -154,6 +154,9 @@ const Products = (props) => {
   houseOnly.nodes["Ground"].receiveShadow = true;
   houseOnly.nodes["Ground"].castShadow = false;
   //   debugger;
+
+  console.log("ex", currentExhaustNum);
+  console.log("in", currentIntakeNum);
   return (
     <>
       <Suspense>
@@ -170,16 +173,20 @@ const Products = (props) => {
         >
           <primitive object={houseOnly.scene} />
 
-          <primitive
-            ref={refExhaust}
-            onBeforeRender={(e) => onActiveExhaust(refExhaust)}
-            object={exhausts[currentExhaustNum]}
-          />
-          <primitive
-            ref={refIntake}
-            onBeforeRender={(e) => onActiveIntake(refIntake)}
-            object={intakes[currentIntakeNum - 1]}
-          />
+          {currentExhaustNum !== null && (
+            <primitive
+              ref={refExhaust}
+              onBeforeRender={(e) => onActiveExhaust(refExhaust)}
+              object={exhausts[currentExhaustNum]}
+            />
+          )}
+          {currentIntakeNum !== null && (
+            <primitive
+              ref={refIntake}
+              onBeforeRender={(e) => onActiveIntake(refIntake)}
+              object={intakes[currentIntakeNum - 1]}
+            />
+          )}
 
           {/* {currentExhaustNum <= 2 && (
             <group>
