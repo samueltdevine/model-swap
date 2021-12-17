@@ -20,7 +20,7 @@ const Products = (props) => {
     onActiveExhaust,
   } = props;
 
-  const houseOnly = useLoader(GLTFLoader, "/houseOnly5.gltf");
+  const houseOnly = useLoader(GLTFLoader, "/houseOnly6.gltf");
   const products = useLoader(GLTFLoader, "/products7.gltf");
   const arrow = useLoader(GLTFLoader, "/arrow3.gltf");
 
@@ -121,7 +121,6 @@ const Products = (props) => {
   //   const sidingbump = useTexture("outer_wallsBump.png");
   const sidingNormalAttic = useTexture("NormalMap6.png");
   houseOnly.materials["Siding"].color = { b: 0.8, g: 0.8, r: 0.8 };
-  houseOnly.materials["Siding_attic"].color = { b: 0.8, g: 0.8, r: 0.8 };
   houseOnly.materials["Roof"].color = { b: 0.2, g: 0.2, r: 0.2 };
 
   const sidingMat = new THREE.MeshPhysicalMaterial({
@@ -131,7 +130,7 @@ const Products = (props) => {
 
   //   houseOnly.materials["Siding"] = sidingMat;
   houseOnly.materials["Siding"].normalMap = sidingNormal;
-  houseOnly.materials["Siding_attic"].normalMap = sidingNormalAttic;
+  // houseOnly.materials["Siding_attic"].normalMap = sidingNormalAttic;
   //   debugger;
 
   const mat = houseOnly.materials["window"];
@@ -143,13 +142,14 @@ const Products = (props) => {
   houseOnly.nodes["outer_walls"].receiveShadow = true;
   //   houseOnly.nodes["outer_walls"].visible = false;
   houseOnly.nodes["attic_cutout"].castShadow = true;
+  // houseOnly.nodes["attic_cutout"].visible = false;
   houseOnly.nodes["Trim"].castShadow = true;
   houseOnly.nodes["Concrete"].castShadow = true;
   houseOnly.nodes["Foof_main"].receiveShadow = false;
   houseOnly.nodes["Foof_main"].castShadow = false;
-  houseOnly.nodes["Windows-House_Main"].castShadow = true;
-  houseOnly.nodes["Windows-window"].castShadow = true;
-  houseOnly.nodes["Windows-window_1"].castShadow = true;
+  // houseOnly.nodes["Windows-House_Main"].castShadow = true;
+  // houseOnly.nodes["Windows-window"].castShadow = true;
+  // houseOnly.nodes["Windows-window_1"].castShadow = true;
   houseOnly.nodes["Windows"].castShadow = true;
   houseOnly.nodes["Ground"].receiveShadow = true;
   houseOnly.nodes["Ground"].castShadow = false;
