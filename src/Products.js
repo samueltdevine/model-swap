@@ -18,9 +18,11 @@ const Products = (props) => {
     currentExhaustNum,
     onActiveIntake,
     onActiveExhaust,
+    atticMode,
+    atticNum,
   } = props;
 
-  const houseOnly = useLoader(GLTFLoader, "/houseOnly6.gltf");
+  const houseOnly = useLoader(GLTFLoader, "/houseOnly7.gltf");
   const products = useLoader(GLTFLoader, "/products7.gltf");
   const arrow = useLoader(GLTFLoader, "/arrow3.gltf");
 
@@ -134,6 +136,7 @@ const Products = (props) => {
   //   debugger;
 
   const mat = houseOnly.materials["window"];
+  const matPlace = new THREE.MeshStandardMaterial();
   mat.opacity = 0.36;
   //   houseOnly.nodes["outer_walls"].castShadow = true;
   //   houseOnly.nodes["outer_walls"].material = mat;
@@ -153,10 +156,48 @@ const Products = (props) => {
   houseOnly.nodes["Windows"].castShadow = true;
   houseOnly.nodes["Ground"].receiveShadow = true;
   houseOnly.nodes["Ground"].castShadow = false;
+  const mold = houseOnly.materials["Insulation"].clone();
   //   debugger;
+  console.log(houseOnly);
+  if (atticMode === true) {
+    houseOnly.nodes["attic_cutout"].visible = false;
+    if (atticNum === 0) {
+      houseOnly.nodes["Baffles_2"].visible = false;
+      houseOnly.nodes["ice_1"].visible = false;
+      houseOnly.nodes["ice_2"].visible = false;
+      houseOnly.nodes["Stud"].material = matPlace;
+      houseOnly.nodes["insulation"].material = matPlace;
+      houseOnly.nodes["extra_insulation"].visible = false;
+      // houseOnly.materials["Insulation"] = matPlace;
+    }
+    if (atticNum === 1) {
+      houseOnly.nodes["Baffles_2"].visible = true;
+      houseOnly.nodes["ice_1"].visible = false;
+      houseOnly.nodes["ice_2"].visible = false;
+      houseOnly.nodes["Stud"].material = matPlace;
+      houseOnly.nodes["insulation"].material = matPlace;
+      houseOnly.nodes["extra_insulation"].visible = false;
+      // houseOnly.materials["Insulation"] = matPlace;
+    }
+    if (atticNum === 2) {
+      houseOnly.nodes["Stud"].material = mold;
+      houseOnly.nodes["insulation"].material = mold;
+      houseOnly.nodes["extra_insulation"].visible = true;
+      houseOnly.nodes["Baffles_2"].visible = false;
+      houseOnly.nodes["Stud"].material = mold;
 
-  console.log("ex", currentExhaustNum);
-  console.log("in", currentIntakeNum);
+      houseOnly.nodes["ice_1"].visible = false;
+      houseOnly.nodes["ice_2"].visible = false;
+    }
+    if (atticNum === 3) {
+      houseOnly.nodes["Baffles_2"].visible = false;
+      houseOnly.nodes["ice_1"].visible = true;
+      houseOnly.nodes["ice_2"].visible = true;
+      houseOnly.nodes["extra_insulation"].visible = true;
+    }
+  } else {
+    houseOnly.nodes["attic_cutout"].visible = true;
+  }
   return (
     <>
       <Suspense>
@@ -172,20 +213,23 @@ const Products = (props) => {
           // position={[1.2, -2, 0]}
         >
           <primitive object={houseOnly.scene} />
-
-          {currentExhaustNum !== null && (
-            <primitive
-              ref={refExhaust}
-              onBeforeRender={(e) => onActiveExhaust(refExhaust)}
-              object={exhausts[currentExhaustNum]}
-            />
-          )}
-          {currentIntakeNum !== null && (
-            <primitive
-              ref={refIntake}
-              onBeforeRender={(e) => onActiveIntake(refIntake)}
-              object={intakes[currentIntakeNum - 1]}
-            />
+          {atticMode === false && (
+            <group>
+              {currentExhaustNum !== null && (
+                <primitive
+                  ref={refExhaust}
+                  onBeforeRender={(e) => onActiveExhaust(refExhaust)}
+                  object={exhausts[currentExhaustNum]}
+                />
+              )}
+              {currentIntakeNum !== null && (
+                <primitive
+                  ref={refIntake}
+                  onBeforeRender={(e) => onActiveIntake(refIntake)}
+                  object={intakes[currentIntakeNum - 1]}
+                />
+              )}
+            </group>
           )}
 
           {/* {currentExhaustNum <= 2 && (

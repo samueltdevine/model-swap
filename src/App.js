@@ -27,9 +27,10 @@ function App() {
   const [activePreview, setActivePreview] = useState(0);
   const [activeIntake, onActiveIntake] = useState(null);
   const [activeExhaust, onActiveExhaust] = useState(null);
+  const [atticMode, setAtticMode] = useState(false);
+  const [atticNum, setAtticNum] = useState(0);
   const selectedIntake = activeIntake ? [activeIntake] : undefined;
   const selectedExhaust = activeExhaust ? [activeExhaust] : undefined;
-
   // const CameraGuide = (props) => {
   //   // const ref = useRef();
   //   const { camera } = useThree();
@@ -83,7 +84,7 @@ function App() {
   // };
 
   console.log("Active", activePreview);
-
+  console.log("atticNum", atticNum);
   return (
     <div className="App">
       <div className="wrapper" style={{ display: "flex", height: "100%" }}>
@@ -91,69 +92,103 @@ function App() {
           <div
             className={"gui-camera-switch"}
             style={{
+              width: "100%",
               display: "flex",
               flexDirection: "row",
-              justifyContent: "flex-end",
+              justifyContent: "space-between",
             }}
           >
-            <label onClick={() => setActivePreview([14, "reset"])}>Back</label>
-            <label onClick={() => setActivePreview([13, "reset"])}>Front</label>
+            <div style={{ display: "flex" }}>
+              <label onClick={() => setActivePreview([14, "reset"])}>
+                Back
+              </label>
+              <label onClick={() => setActivePreview([13, "reset"])}>
+                Front
+              </label>
+            </div>
+            <label
+              style={{ justifySelf: "flex-end" }}
+              onClick={() => setAtticMode((atticMode) => !atticMode)}
+            >
+              Attic Mode
+            </label>
           </div>
-          <Tabs
-            defaultActiveKey="exhaust"
-            // id="uncontrolled-tab-example"
-            // className="mb-2"
-          >
-            <Tab eventKey="exhaust" title="Exhaust">
-              <GuiQuestion
-                setActiveExhaustNum={setActiveExhaustNum}
-                activeExhaustNum={activeExhaustNum}
-                setActivePreview={setActivePreview}
-                // answer={3}
-                type={"exhaust"}
-                names={[
-                  "Plastic Ridge Vent",
-                  "Mesh Ridge Vent",
-                  "Plastic Slant Back Roof Louver",
-                  "Aluminum Square Roof Louver",
-                  '12" Internally Braced Wind Turbine',
-                  "Plastic Gable Louvers",
-                ]}
-              ></GuiQuestion>
-            </Tab>
-            <Tab eventKey="intake" title="Intake">
-              <GuiQuestion
-                setActiveIntakeNum={setActiveIntakeNum}
-                activeIntakeNum={activeIntakeNum}
-                setActivePreview={setActivePreview}
-                type={"intake"}
-                names={[
-                  "Plastic Gable Louvers",
-                  "Aluminum Undereave Intake Vent",
-                  "Continuous Undereave Vent",
-                  "Plastic Soffit Vent",
-                  "Roftop Intake Vent",
-                  "Closable Soffit Vent",
-                ]}
-              ></GuiQuestion>
-            </Tab>
-          </Tabs>
+          {atticMode === false && (
+            <Tabs
+              defaultActiveKey="exhaust"
+              // id="uncontrolled-tab-example"
+              // className="mb-2"
+            >
+              <Tab eventKey="exhaust" title="Exhaust">
+                <GuiQuestion
+                  atticMode={atticMode}
+                  setActiveExhaustNum={setActiveExhaustNum}
+                  activeExhaustNum={activeExhaustNum}
+                  setActivePreview={setActivePreview}
+                  // answer={3}
+                  type={"exhaust"}
+                  names={[
+                    "Plastic Ridge Vent",
+                    "Mesh Ridge Vent",
+                    "Plastic Slant Back Roof Louver",
+                    "Aluminum Square Roof Louver",
+                    '12" Internally Braced Wind Turbine',
+                    "Plastic Gable Louvers",
+                  ]}
+                ></GuiQuestion>
+              </Tab>
+              <Tab eventKey="intake" title="Intake">
+                <GuiQuestion
+                  atticMode={atticMode}
+                  setActiveIntakeNum={setActiveIntakeNum}
+                  activeIntakeNum={activeIntakeNum}
+                  setActivePreview={setActivePreview}
+                  type={"intake"}
+                  names={[
+                    "Plastic Gable Louvers",
+                    "Aluminum Undereave Intake Vent",
+                    "Continuous Undereave Vent",
+                    "Plastic Soffit Vent",
+                    "Roftop Intake Vent",
+                    "Closable Soffit Vent",
+                  ]}
+                ></GuiQuestion>
+              </Tab>
+            </Tabs>
+          )}
+          {atticMode === true && (
+            <GuiQuestion
+              atticMode={atticMode}
+              setActiveIntakeNum={setActiveIntakeNum}
+              activeIntakeNum={activeIntakeNum}
+              setAtticNum={setAtticNum}
+              atticNum={atticNum}
+              setActivePreview={setActivePreview}
+              type={"attic"}
+              names={["Ideal", "Mold", "Ice"]}
+            ></GuiQuestion>
+          )}
         </div>
         <div className="canvasWrap" style={{ width: "100%", height: "100%" }}>
           <Canvas shadows={true} shadowMap>
             <Suspense fallback={null}>
-              <Arrows
-                activeExhaustNum={activeExhaustNum}
-                activeIntakeNum={activeIntakeNum}
-              />
+              {atticMode === false && (
+                <Arrows
+                  activeExhaustNum={activeExhaustNum}
+                  activeIntakeNum={activeIntakeNum}
+                />
+              )}
+
               {/* <Arrow scale={1} /> */}
               {/* <MoveAlongCurve /> */}
               <Products
                 onActiveIntake={onActiveIntake}
                 onActiveExhaust={onActiveExhaust}
-                // forwardedRef={childRef}
+                atticMode={atticMode}
+                atticNum={atticNum}
                 currentExhaustNum={activeExhaustNum}
                 currentIntakeNum={activeIntakeNum}
+                atticNum={atticNum}
               />
 
               <Environment preset="sunset" />
@@ -200,8 +235,9 @@ function App() {
               maxDistance={6}
               maxPolarAngle={THREE.MathUtils.degToRad(99)}
             /> */}
-            {/* <CameraLogger /> */}
+            <CameraLogger />
             <CameraGuide
+              atticMode={atticMode}
               lastSelected={activePreview}
               activeIntakeNum={activeIntakeNum}
             />

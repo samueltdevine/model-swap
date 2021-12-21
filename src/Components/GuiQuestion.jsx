@@ -20,10 +20,13 @@ const GuiQuestion = (props, children) => {
     setActiveIntakeNum,
     activeExhaustNum,
     setActiveExhaustNum,
+    setAtticNum,
+    atticNum,
     answer,
     type,
     names,
     setActivePreview,
+    atticMode,
     // forwardedRef,
   } = props;
   let activeNum = 0;
@@ -38,6 +41,10 @@ const GuiQuestion = (props, children) => {
     setActiveNum = setActiveExhaustNum;
   } else {
     setActiveNum = setActiveIntakeNum;
+  }
+  if (type === "attic") {
+    activeNum = atticNum;
+    setActiveNum = setAtticNum;
   }
   return (
     <div
@@ -89,61 +96,66 @@ const GuiQuestion = (props, children) => {
         />
         {names[2]}
       </label>
-      <label onClick={(e) => setActivePreview([4, type])}>
-        <input
-          type="radio"
-          name="4"
-          value={4}
-          checked={activeNum === 4}
-          onChange={(event) => {
-            checkAnimation(event, answer, 4);
-            setActiveNum(4);
-          }}
-        />
-        {names[3]}
-      </label>
-      <label onClick={(e) => setActivePreview([5, type])}>
-        <input
-          type="radio"
-          name="5"
-          value={5}
-          checked={activeNum === 5}
-          onChange={(event) => {
-            checkAnimation(event, answer, 5);
-            setActiveNum(5);
-          }}
-        />
-        {names[4]}
-      </label>
-      <label onClick={(e) => setActivePreview([6, type])}>
-        <input
-          type="radio"
-          name="6"
-          value={6}
-          checked={activeNum === 6}
-          onChange={(event) => {
-            checkAnimation(event, answer, 6);
-            setActiveNum(6);
-          }}
-        />
-        {names[5]}
-      </label>
-      <label
-        // onPointerOver={(e) => console.log("hit1")}
-        onClick={(e) => setActivePreview([0, type])}
-      >
-        <input
-          type="radio"
-          name="None"
-          value={0}
-          checked={activeNum === 0}
-          onChange={(event) => {
-            checkAnimation(event, answer, 0);
-            setActiveNum(null);
-          }}
-        />
-        none
-      </label>
+      {atticMode === false && (
+        <>
+          <label onClick={(e) => setActivePreview([4, type])}>
+            <input
+              type="radio"
+              name="4"
+              value={4}
+              checked={activeNum === 4}
+              onChange={(event) => {
+                checkAnimation(event, answer, 4);
+                setActiveNum(4);
+              }}
+            />
+            {names[3]}
+          </label>
+
+          <label onClick={(e) => setActivePreview([5, type])}>
+            <input
+              type="radio"
+              name="5"
+              value={5}
+              checked={activeNum === 5}
+              onChange={(event) => {
+                checkAnimation(event, answer, 5);
+                setActiveNum(5);
+              }}
+            />
+            {names[4]}
+          </label>
+          <label onClick={(e) => setActivePreview([6, type])}>
+            <input
+              type="radio"
+              name="6"
+              value={6}
+              checked={activeNum === 6}
+              onChange={(event) => {
+                checkAnimation(event, answer, 6);
+                setActiveNum(6);
+              }}
+            />
+            {names[5]}
+          </label>
+          <label
+            // onPointerOver={(e) => console.log("hit1")}
+            onClick={(e) => setActivePreview([0, type])}
+          >
+            <input
+              type="radio"
+              name="None"
+              value={0}
+              checked={activeNum === 0}
+              onChange={(event) => {
+                checkAnimation(event, answer, 0);
+                setActiveNum(null);
+              }}
+            />
+            none
+          </label>
+        </>
+      )}
     </div>
   );
 };

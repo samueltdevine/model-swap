@@ -5,7 +5,7 @@ import { useSpring, animated } from "@react-spring/three";
 import { CameraControls } from "three-stdlib";
 
 const CameraGuide = (props) => {
-  const { activeIntakeNum, activeExhaustNum, lastSelected } = props;
+  const { activeIntakeNum, activeExhaustNum, lastSelected, atticMode } = props;
   // const ref = useRef();
   const { camera } = useThree();
 
@@ -27,6 +27,9 @@ const CameraGuide = (props) => {
     if (lastSelected[1] === "exhaust") {
       lastNum = 14;
     }
+  }
+  if (atticMode === true) {
+    lastNum = 15;
   }
   //   debugger;
   console.log("last", lastNum);
@@ -417,6 +420,20 @@ const matrices = {
       y: -0.8455454404625233,
       z: -0.10616673080474427,
       w: 0.5191649728272898,
+    },
+    Fov: 45,
+  },
+  15: {
+    Vector3: {
+      x: -2.7467014872520545,
+      y: 2.0867031788491155,
+      z: 0.490174532073839,
+    },
+    Quaternion: {
+      x: -0.013696407379894388,
+      y: -0.8378306044295947,
+      z: -0.021041924076264984,
+      w: 0.5453526603375037,
     },
     Fov: 45,
   },
