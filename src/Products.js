@@ -194,6 +194,8 @@ const Products = (props) => {
       houseOnly.nodes["ice_1"].visible = true;
       houseOnly.nodes["ice_2"].visible = true;
       houseOnly.nodes["extra_insulation"].visible = true;
+      houseOnly.nodes["Stud"].material = matPlace;
+      houseOnly.nodes["insulation"].material = matPlace;
     }
   } else {
     houseOnly.nodes["attic_cutout"].visible = true;
