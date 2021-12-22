@@ -9,7 +9,7 @@ const CameraGuide = (props) => {
   // const ref = useRef();
   const { camera } = useThree();
 
-  let lastNum = 0;
+  let lastNum = 13;
 
   if (lastSelected[1] === "intake") {
     lastNum = lastSelected[0];

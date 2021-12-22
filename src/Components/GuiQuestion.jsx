@@ -96,22 +96,22 @@ const GuiQuestion = (props, children) => {
         />
         {names[2]}
       </label>
+
+      <label onClick={(e) => setActivePreview([4, type])}>
+        <input
+          type="radio"
+          name="4"
+          value={4}
+          checked={activeNum === 4}
+          onChange={(event) => {
+            checkAnimation(event, answer, 4);
+            setActiveNum(4);
+          }}
+        />
+        {names[3]}
+      </label>
       {atticMode === false && (
         <>
-          <label onClick={(e) => setActivePreview([4, type])}>
-            <input
-              type="radio"
-              name="4"
-              value={4}
-              checked={activeNum === 4}
-              onChange={(event) => {
-                checkAnimation(event, answer, 4);
-                setActiveNum(4);
-              }}
-            />
-            {names[3]}
-          </label>
-
           <label onClick={(e) => setActivePreview([5, type])}>
             <input
               type="radio"

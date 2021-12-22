@@ -182,7 +182,7 @@ const Products = (props) => {
     if (atticNum === 2) {
       houseOnly.nodes["Stud"].material = mold;
       houseOnly.nodes["insulation"].material = mold;
-      houseOnly.nodes["extra_insulation"].visible = true;
+      houseOnly.nodes["extra_insulation"].visible = false;
       houseOnly.nodes["Baffles_2"].visible = false;
       houseOnly.nodes["Stud"].material = mold;
 
@@ -193,6 +193,14 @@ const Products = (props) => {
       houseOnly.nodes["Baffles_2"].visible = false;
       houseOnly.nodes["ice_1"].visible = true;
       houseOnly.nodes["ice_2"].visible = true;
+      houseOnly.nodes["extra_insulation"].visible = false;
+      houseOnly.nodes["Stud"].material = matPlace;
+      houseOnly.nodes["insulation"].material = matPlace;
+    }
+    if (atticNum === 4) {
+      houseOnly.nodes["Baffles_2"].visible = false;
+      houseOnly.nodes["ice_1"].visible = false;
+      houseOnly.nodes["ice_2"].visible = false;
       houseOnly.nodes["extra_insulation"].visible = true;
       houseOnly.nodes["Stud"].material = matPlace;
       houseOnly.nodes["insulation"].material = matPlace;

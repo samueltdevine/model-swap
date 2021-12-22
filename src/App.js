@@ -165,7 +165,7 @@ function App() {
               atticNum={atticNum}
               setActivePreview={setActivePreview}
               type={"attic"}
-              names={["Ideal", "Mold", "Ice"]}
+              names={["Ideal", "Mold", "Ice", "Blocked Intake"]}
             ></GuiQuestion>
           )}
         </div>
