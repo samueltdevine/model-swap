@@ -1,13 +1,25 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useMemo, useState } from "react";
 import { useThree, useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import { useSpring, animated } from "@react-spring/three";
 import { CameraControls } from "three-stdlib";
+import { Vector3 } from "three";
 
 const CameraGuide = (props) => {
-  const { activeIntakeNum, activeExhaustNum, lastSelected, atticMode } = props;
+  const {
+    activeIntakeNum,
+    activeExhaustNum,
+    lastSelected,
+    atticMode,
+    setAtticMode,
+  } = props;
   // const ref = useRef();
   const { camera } = useThree();
+
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  useEffect(() => {
+    setIsTransitioning(true);
+  }, [atticMode]);
 
   let lastNum = 13;
 
@@ -30,70 +42,114 @@ const CameraGuide = (props) => {
   }
   if (atticMode === true) {
     lastNum = 15;
+    // wasAttic = true;
+  } else {
+    // wasAttic = "was";
   }
   //   debugger;
   console.log("last", lastNum);
 
-  useFrame((state) => {
-    state.camera.fov = 50;
-    // state.camera.near = 0.0001;
-    state.camera.updateProjectionMatrix();
-  });
+  // useFrame((state) => {
+  //   // state.camera.fov = 50;
+  //   // state.camera.near = 0.0001;
+  //   state.camera.updateProjectionMatrix();
+  // });
 
   const pram1 = 0.1;
   const pram2 = 1;
+
   useFrame(({ clock, camera }) => {
-    const x = THREE.MathUtils.damp(
+    let x = THREE.MathUtils.damp(
       camera.position.x,
       matrices[lastNum].Vector3.x,
       pram1,
       pram2
     );
-    const y = THREE.MathUtils.damp(
+    let y = THREE.MathUtils.damp(
       camera.position.y,
       matrices[lastNum].Vector3.y,
       pram1,
       pram2
     );
-    const z = THREE.MathUtils.damp(
+    let z = THREE.MathUtils.damp(
       camera.position.z,
       matrices[lastNum].Vector3.z,
       pram1,
       pram2
     );
 
-    const qx = THREE.MathUtils.damp(
+    let qx = THREE.MathUtils.damp(
       camera.quaternion.x,
       matrices[lastNum].Quaternion.x,
       pram1,
       pram2
     );
-    const qy = THREE.MathUtils.damp(
+    let qy = THREE.MathUtils.damp(
       camera.quaternion.y,
       matrices[lastNum].Quaternion.y,
       pram1,
       pram2
     );
-    const qz = THREE.MathUtils.damp(
+    let qz = THREE.MathUtils.damp(
       camera.quaternion.z,
       matrices[lastNum].Quaternion.z,
       pram1,
       pram2
     );
-    const qw = THREE.MathUtils.damp(
+    let qw = THREE.MathUtils.damp(
       camera.quaternion.w,
       matrices[lastNum].Quaternion.w,
       pram1,
       pram2
     );
-    const dynamicFov = THREE.MathUtils.damp(
+    let dynamicFov = THREE.MathUtils.damp(
       camera.fov,
       matrices[lastNum].Fov,
       pram1,
       pram2
     );
+    // if (wasAttic === true) {
+    //   x = matrices[lastNum].Vector3.x;
+    //   y = matrices[lastNum].Vector3.y;
+    //   z = matrices[lastNum].Vector3.z;
 
-    if (lastNum !== undefined) {
+    //   qx = matrices[lastNum].Quaternion.x;
+    //   qy = matrices[lastNum].Quaternion.y;
+    //   qz = matrices[lastNum].Quaternion.z;
+    //   qw = matrices[lastNum].Quaternion.w;
+
+    //   dynamicFov = matrices[lastNum].Fov;
+    // }
+    // if (lastNum !== undefined && wasAttic === "was") {
+    //   camera.position.x = matrices[lastNum].Vector3.x;
+    //   camera.position.y = matrices[lastNum].Vector3.y;
+    //   camera.position.z = matrices[lastNum].Vector3.z;
+    //   camera.quaternion.x = matrices[lastNum].Quaternion.x;
+    //   camera.quaternion.y = matrices[lastNum].Quaternion.y;
+    //   camera.quaternion.z = matrices[lastNum].Quaternion.z;
+    //   camera.quaternion.w = matrices[lastNum].Quaternion.w;
+    //   camera.fov = matrices[lastNum].Fov;
+    //   // wasAttic = false;
+    // }
+
+    // if (lastNum === undefined) {
+    // if (lastNum !== undefined) {
+
+    // was15 = false;
+    // }
+    // const val = true;
+    if (isTransitioning === true) {
+      camera.position.x = matrices[lastNum].Vector3.x;
+      camera.position.y = matrices[lastNum].Vector3.y;
+      camera.position.z = matrices[lastNum].Vector3.z;
+      camera.quaternion.x = matrices[lastNum].Quaternion.x;
+      camera.quaternion.y = matrices[lastNum].Quaternion.y;
+      camera.quaternion.z = matrices[lastNum].Quaternion.z;
+      camera.quaternion.w = matrices[lastNum].Quaternion.w;
+      camera.fov = matrices[lastNum].Fov;
+      camera.updateProjectionMatrix();
+      setIsTransitioning(false);
+    } else {
       camera.position.x = x;
       camera.position.y = y;
       camera.position.z = z;
@@ -102,112 +158,10 @@ const CameraGuide = (props) => {
       camera.quaternion.z = qz;
       camera.quaternion.w = qw;
       camera.fov = dynamicFov;
+      camera.updateProjectionMatrix();
     }
-
-    camera.updateProjectionMatrix();
   });
 
-  //   useFrame(() => {
-  //     if (activeIntakeNum === 1) {
-  //       camera.position.set(
-  //         matrices[1].Vector3.x,
-  //         matrices[1].Vector3.y,
-  //         matrices[1].Vector3.z
-  //       );
-  //       camera.quaternion.set(
-  //         matrices[1].Quaternion.x,
-  //         matrices[1].Quaternion.y,
-  //         matrices[1].Quaternion.z,
-  //         matrices[1].Quaternion.w
-  //       );
-  //       // camera.quaternion = matrices[1].Quanterion;
-  //     }
-  //     if (activeIntakeNum === 2) {
-  //       camera.fov = 75;
-  //       camera.position.set(
-  //         matrices[2].Vector3.x,
-  //         matrices[2].Vector3.y,
-  //         matrices[2].Vector3.z
-  //       );
-  //       camera.quaternion.set(
-  //         matrices[2].Quaternion.x,
-  //         matrices[2].Quaternion.y,
-  //         matrices[2].Quaternion.z,
-  //         matrices[2].Quaternion.w
-  //       );
-  //     }
-  //     if (activeIntakeNum === 3) {
-  //       camera.fov = 75;
-
-  //       camera.position.set(
-  //         matrices[3].Vector3.x,
-  //         matrices[3].Vector3.y,
-  //         matrices[3].Vector3.z
-  //       );
-  //       camera.quaternion.set(
-  //         matrices[3].Quaternion.x,
-  //         matrices[3].Quaternion.y,
-  //         matrices[3].Quaternion.z,
-  //         matrices[3].Quaternion.w
-  //       );
-  //     }
-  //     if (activeIntakeNum === 4) {
-  //       camera.fov = 75;
-
-  //       camera.position.set(
-  //         matrices[4].Vector3.x,
-  //         matrices[4].Vector3.y,
-  //         matrices[4].Vector3.z
-  //       );
-  //       camera.quaternion.set(
-  //         matrices[4].Quaternion.x,
-  //         matrices[4].Quaternion.y,
-  //         matrices[4].Quaternion.z,
-  //         matrices[4].Quaternion.w
-  //       );
-  //     }
-  //     if (activeIntakeNum === 5) {
-  //       camera.fov = 75;
-
-  //       camera.position.set(
-  //         matrices[5].Vector3.x,
-  //         matrices[5].Vector3.y,
-  //         matrices[5].Vector3.z
-  //       );
-  //       camera.quaternion.set(
-  //         matrices[5].Quaternion.x,
-  //         matrices[5].Quaternion.y,
-  //         matrices[5].Quaternion.z,
-  //         matrices[5].Quaternion.w
-  //       );
-  //     }
-  //     if (activeIntakeNum === 6) {
-  //       camera.fov = 75;
-  //       camera.position.set(
-  //         matrices[6].Vector3.x,
-  //         matrices[6].Vector3.y,
-  //         matrices[6].Vector3.z
-  //       );
-  //       camera.quaternion.set(
-  //         matrices[6].Quaternion.x,
-  //         matrices[6].Quaternion.y,
-  //         matrices[6].Quaternion.z,
-  //         matrices[6].Quaternion.w
-  //       );
-  //     }
-  //     // debugger;
-
-  //     // camera.updateMatrixWorld();
-  //     camera.updateMatrix();
-  //     camera.updateProjectionMatrix();
-  //   });
-
-  //   useFrame(() => {
-  //   console.log("camera", camera);
-  //   console.log("camera pos", camera.position);
-  //   console.log("camera qua", camera.quaternion);
-  //   console.log("camera qua", camera.fov);
-  //   });
   return null;
   //   return <perspectiveCamera position={[-1, 1, -5]} {...props} />;
 };
@@ -425,7 +379,7 @@ const matrices = {
   },
   15: {
     Vector3: {
-      x: -3.3025744548399785,
+      x: -1.3025744548399785,
       y: 2.1092117042346334,
       z: 0.1395328239268624,
     },
@@ -435,7 +389,7 @@ const matrices = {
       z: -0.0292081371812646,
       w: 0.7168319759051386,
     },
-    Fov: 110,
+    Fov: 100,
   },
 };
 

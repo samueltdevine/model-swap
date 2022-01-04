@@ -238,6 +238,7 @@ function App() {
             <CameraLogger />
             <CameraGuide
               atticMode={atticMode}
+              setAtticMode={setAtticMode}
               lastSelected={activePreview}
               activeIntakeNum={activeIntakeNum}
             />
