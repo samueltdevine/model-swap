@@ -158,9 +158,8 @@ const Products = (props) => {
   houseOnly.nodes["Ground"].castShadow = false;
   const mold = houseOnly.materials["Insulation"].clone();
   //   debugger;
-  console.log(houseOnly);
   if (atticMode === true) {
-    houseOnly.nodes["attic_cutout"].visible = false;
+    // houseOnly.nodes["attic_cutout"].visible = false;
     if (atticNum === 0) {
       houseOnly.nodes["Baffles_2"].visible = false;
       houseOnly.nodes["ice_1"].visible = false;

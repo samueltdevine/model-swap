@@ -11,8 +11,13 @@ const CameraGuide = (props) => {
   // const ref = useRef();
   const { camera } = useThree();
 
+  useEffect(() => {
+    console.log("rendered attic mode changed");
+  }, [atticMode]);
+
   const [isTransitioning, setIsTransitioning] = useState(false);
   useEffect(() => {
+    console.log("rendered set");
     setIsTransitioning(true);
   }, [atticMode]);
 
@@ -42,7 +47,6 @@ const CameraGuide = (props) => {
     // wasAttic = "was";
   }
   //   debugger;
-  console.log("last", lastNum);
 
   // useFrame((state) => {
   //   // state.camera.fov = 50;
@@ -52,7 +56,20 @@ const CameraGuide = (props) => {
 
   const pram1 = 0.1;
   const pram2 = 1;
-  console.log("rendered");
+  // console.log("rendered");
+
+  if (isTransitioning === true) {
+    camera.position.x = matrices[lastNum].Vector3.x;
+    camera.position.y = matrices[lastNum].Vector3.y;
+    camera.position.z = matrices[lastNum].Vector3.z;
+    camera.quaternion.x = matrices[lastNum].Quaternion.x;
+    camera.quaternion.y = matrices[lastNum].Quaternion.y;
+    camera.quaternion.z = matrices[lastNum].Quaternion.z;
+    camera.quaternion.w = matrices[lastNum].Quaternion.w;
+    camera.fov = matrices[lastNum].Fov;
+    camera.updateProjectionMatrix();
+    setIsTransitioning(false);
+  }
 
   useFrame(({ clock, camera }) => {
     let x = THREE.MathUtils.damp(
@@ -104,48 +121,7 @@ const CameraGuide = (props) => {
       pram1,
       pram2
     );
-    // if (wasAttic === true) {
-    //   x = matrices[lastNum].Vector3.x;
-    //   y = matrices[lastNum].Vector3.y;
-    //   z = matrices[lastNum].Vector3.z;
-
-    //   qx = matrices[lastNum].Quaternion.x;
-    //   qy = matrices[lastNum].Quaternion.y;
-    //   qz = matrices[lastNum].Quaternion.z;
-    //   qw = matrices[lastNum].Quaternion.w;
-
-    //   dynamicFov = matrices[lastNum].Fov;
-    // }
-    // if (lastNum !== undefined && wasAttic === "was") {
-    //   camera.position.x = matrices[lastNum].Vector3.x;
-    //   camera.position.y = matrices[lastNum].Vector3.y;
-    //   camera.position.z = matrices[lastNum].Vector3.z;
-    //   camera.quaternion.x = matrices[lastNum].Quaternion.x;
-    //   camera.quaternion.y = matrices[lastNum].Quaternion.y;
-    //   camera.quaternion.z = matrices[lastNum].Quaternion.z;
-    //   camera.quaternion.w = matrices[lastNum].Quaternion.w;
-    //   camera.fov = matrices[lastNum].Fov;
-    //   // wasAttic = false;
-    // }
-
-    // if (lastNum === undefined) {
-    // if (lastNum !== undefined) {
-
-    // was15 = false;
-    // }
-    // const val = true;
-    if (isTransitioning === true) {
-      camera.position.x = matrices[lastNum].Vector3.x;
-      camera.position.y = matrices[lastNum].Vector3.y;
-      camera.position.z = matrices[lastNum].Vector3.z;
-      camera.quaternion.x = matrices[lastNum].Quaternion.x;
-      camera.quaternion.y = matrices[lastNum].Quaternion.y;
-      camera.quaternion.z = matrices[lastNum].Quaternion.z;
-      camera.quaternion.w = matrices[lastNum].Quaternion.w;
-      camera.fov = matrices[lastNum].Fov;
-      camera.updateProjectionMatrix();
-      setIsTransitioning(false);
-    } else {
+    if (isTransitioning !== true) {
       camera.position.x = x;
       camera.position.y = y;
       camera.position.z = z;
@@ -158,7 +134,6 @@ const CameraGuide = (props) => {
     }
   });
   return null;
-  //   return <perspectiveCamera position={[-1, 1, -5]} {...props} />;
 };
 
 const matrices = {

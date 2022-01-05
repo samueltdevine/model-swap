@@ -31,6 +31,7 @@ function App() {
   const [atticNum, setAtticNum] = useState(0);
   const selectedIntake = activeIntake ? [activeIntake] : undefined;
   const selectedExhaust = activeExhaust ? [activeExhaust] : undefined;
+
   // const CameraGuide = (props) => {
   //   // const ref = useRef();
   //   const { camera } = useThree();
@@ -238,9 +239,8 @@ function App() {
             <CameraLogger />
             <MemoizedCameraGuide
               atticMode={atticMode}
-              setAtticMode={setAtticMode}
+              // setAtticMode={setAtticMode}
               lastSelected={activePreview}
-              activeIntakeNum={activeIntakeNum}
             />
           </Canvas>
         </div>
