@@ -114,61 +114,68 @@ function App() {
               Attic Mode
             </label>
           </div>
-          {atticMode === false && (
-            <Tabs
-              defaultActiveKey="exhaust"
-              // id="uncontrolled-tab-example"
-              // className="mb-2"
-            >
-              <Tab eventKey="exhaust" title="Exhaust">
-                <GuiQuestion
-                  atticMode={atticMode}
-                  setActiveExhaustNum={setActiveExhaustNum}
-                  activeExhaustNum={activeExhaustNum}
-                  setActivePreview={setActivePreview}
-                  // answer={3}
-                  type={"exhaust"}
-                  names={[
-                    "Plastic Ridge Vent",
-                    "Mesh Ridge Vent",
-                    "Plastic Slant Back Roof Louver",
-                    "Aluminum Square Roof Louver",
-                    '12" Internally Braced Wind Turbine',
-                    "Plastic Gable Louvers",
-                  ]}
-                ></GuiQuestion>
-              </Tab>
-              <Tab eventKey="intake" title="Intake">
-                <GuiQuestion
-                  atticMode={atticMode}
-                  setActiveIntakeNum={setActiveIntakeNum}
-                  activeIntakeNum={activeIntakeNum}
-                  setActivePreview={setActivePreview}
-                  type={"intake"}
-                  names={[
-                    "Plastic Gable Louvers",
-                    "Aluminum Undereave Intake Vent",
-                    "Continuous Undereave Vent",
-                    "Plastic Soffit Vent",
-                    "Roftop Intake Vent",
-                    "Closable Soffit Vent",
-                  ]}
-                ></GuiQuestion>
-              </Tab>
-            </Tabs>
-          )}
-          {atticMode === true && (
-            <GuiQuestion
-              atticMode={atticMode}
-              setActiveIntakeNum={setActiveIntakeNum}
-              activeIntakeNum={activeIntakeNum}
-              setAtticNum={setAtticNum}
-              atticNum={atticNum}
-              setActivePreview={setActivePreview}
-              type={"attic"}
-              names={["Ideal", "Mold", "Ice", "Blocked Intake"]}
-            ></GuiQuestion>
-          )}
+          {/* {atticMode === false && ( */}
+          <Tabs
+            defaultActiveKey="exhaust"
+            // id="uncontrolled-tab-example"
+            // className="mb-2"
+          >
+            {/* {atticMode === false && (  */}
+            <Tab eventKey="exhaust" title="Exhaust">
+              <GuiQuestion
+                atticMode={false}
+                setActiveExhaustNum={setActiveExhaustNum}
+                activeExhaustNum={activeExhaustNum}
+                setActivePreview={setActivePreview}
+                // answer={3}
+                type={"exhaust"}
+                names={[
+                  "Plastic Ridge Vent",
+                  "Mesh Ridge Vent",
+                  "Plastic Slant Back Roof Louver",
+                  "Aluminum Square Roof Louver",
+                  '12" Internally Braced Wind Turbine',
+                  "Plastic Gable Louvers",
+                ]}
+              ></GuiQuestion>
+            </Tab>
+            <Tab eventKey="intake" title="Intake">
+              <GuiQuestion
+                atticMode={false}
+                setActiveIntakeNum={setActiveIntakeNum}
+                activeIntakeNum={activeIntakeNum}
+                setActivePreview={setActivePreview}
+                type={"intake"}
+                names={[
+                  "Plastic Gable Louvers",
+                  "Aluminum Undereave Intake Vent",
+                  "Continuous Undereave Vent",
+                  "Plastic Soffit Vent",
+                  "Roftop Intake Vent",
+                  "Closable Soffit Vent",
+                ]}
+              ></GuiQuestion>
+            </Tab>
+            {/* )} */}
+            {/* {atticMode && ( */}
+            <Tab eventKey="Attic" title="Attic" disabled={!atticMode}>
+              <GuiQuestion
+                atticMode={true}
+                setActiveIntakeNum={setActiveIntakeNum}
+                activeIntakeNum={activeIntakeNum}
+                setAtticNum={setAtticNum}
+                atticNum={atticNum}
+                setActivePreview={setActivePreview}
+                type={"attic"}
+                names={["Ideal", "Mold", "Ice", "Blocked Intake"]}
+              ></GuiQuestion>
+            </Tab>
+            {/* )} */}
+          </Tabs>
+
+          {/* {atticMode === true && (
+           
+          )} */}
         </div>
         <div className="canvasWrap" style={{ width: "100%", height: "100%" }}>
           <Canvas shadows={true} shadowMap>
