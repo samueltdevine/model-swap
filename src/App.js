@@ -18,7 +18,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Tabs, Tab } from "react-bootstrap";
 import Arrows from "./Components/Arrows";
 import Products from "./Products";
-import CameraGuide from "./Components/CameraGuide";
+import { MemoizedCameraGuide } from "./Components/CameraGuide";
 import CameraLogger from "./Components/CameraLogger";
 
 function App() {
@@ -236,7 +236,7 @@ function App() {
               maxPolarAngle={THREE.MathUtils.degToRad(99)}
             /> */}
             <CameraLogger />
-            <CameraGuide
+            <MemoizedCameraGuide
               atticMode={atticMode}
               setAtticMode={setAtticMode}
               lastSelected={activePreview}

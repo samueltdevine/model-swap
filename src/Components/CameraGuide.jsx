@@ -1,4 +1,5 @@
 import { useEffect, useRef, useMemo, useState } from "react";
+import React from "react";
 import { useThree, useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import { useSpring, animated } from "@react-spring/three";
@@ -6,13 +7,7 @@ import { CameraControls } from "three-stdlib";
 import { Vector3 } from "three";
 
 const CameraGuide = (props) => {
-  const {
-    activeIntakeNum,
-    activeExhaustNum,
-    lastSelected,
-    atticMode,
-    setAtticMode,
-  } = props;
+  const { lastSelected, atticMode } = props;
   // const ref = useRef();
   const { camera } = useThree();
 
@@ -57,6 +52,7 @@ const CameraGuide = (props) => {
 
   const pram1 = 0.1;
   const pram2 = 1;
+  console.log("rendered");
 
   useFrame(({ clock, camera }) => {
     let x = THREE.MathUtils.damp(
@@ -161,7 +157,6 @@ const CameraGuide = (props) => {
       camera.updateProjectionMatrix();
     }
   });
-
   return null;
   //   return <perspectiveCamera position={[-1, 1, -5]} {...props} />;
 };
@@ -393,4 +388,4 @@ const matrices = {
   },
 };
 
-export default CameraGuide;
+export const MemoizedCameraGuide = React.memo(CameraGuide);
