@@ -33,7 +33,7 @@ const GuiQuestion = (props, children) => {
   let setActiveNum = undefined;
 
   if (type === "exhaust") {
-    activeNum = activeExhaustNum;
+    activeNum = activeExhaustNum - 1;
   } else {
     activeNum = activeIntakeNum;
   }
@@ -216,19 +216,6 @@ const GuiQuestion = (props, children) => {
             />
             {names[11]}
           </label>
-          <label onClick={(e) => setActivePreview([12, type])}>
-            <input
-              type="radio"
-              name="12"
-              value={12}
-              checked={activeNum === 12}
-              onChange={(event) => {
-                checkAnimation(event, answer, 12);
-                setActiveNum(12);
-              }}
-            />
-            {names[11]}
-          </label>
           <label onClick={(e) => setActivePreview([13, type])}>
             <input
               type="radio"
@@ -280,19 +267,6 @@ const GuiQuestion = (props, children) => {
               }}
             />
             {names[15]}
-          </label>
-          <label onClick={(e) => setActivePreview([17, type])}>
-            <input
-              type="radio"
-              name="17"
-              value={17}
-              checked={activeNum === 17}
-              onChange={(event) => {
-                checkAnimation(event, answer, 17);
-                setActiveNum(17);
-              }}
-            />
-            {names[16]}
           </label>
           <label onClick={(e) => setActivePreview([17, type])}>
             <input

@@ -23,7 +23,7 @@ const Products = (props) => {
   } = props;
 
   const houseOnly = useLoader(GLTFLoader, "/houseOnly7.gltf");
-  const products = useLoader(GLTFLoader, "/products10.gltf");
+  const products = useLoader(GLTFLoader, "/products11.gltf");
   const arrow = useLoader(GLTFLoader, "/arrow3.gltf");
 
   const degToRad = (deg) => {
@@ -236,7 +236,7 @@ const Products = (props) => {
                 <primitive
                   ref={refExhaust}
                   onBeforeRender={(e) => onActiveExhaust(refExhaust)}
-                  object={exhausts[currentExhaustNum]}
+                  object={exhausts[currentExhaustNum - 1]}
                 />
               )}
               {currentIntakeNum !== null && (
