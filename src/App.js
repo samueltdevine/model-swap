@@ -130,12 +130,24 @@ function App() {
                 // answer={3}
                 type={"exhaust"}
                 names={[
-                  "Plastic Ridge Vent",
-                  "Mesh Ridge Vent",
-                  "Plastic Slant Back Roof Louver",
-                  "Aluminum Square Roof Louver",
-                  '12" Internally Braced Wind Turbine',
-                  "Plastic Gable Louvers",
+                  "Contractor Assignment 1 Post Exhaust Aluminum square louver 8",
+                  "Contractor Assignment 1 Post Exhaust Mesh Ridge Vent 23ft",
+                  "Contractor Assignment 1 Post Exhaust Plastic Ridge Vent 22ft",
+                  "Contractor Assignment 1 Post Exhaust Platic Slant Back Louvers 11 2",
+                  "Contractor Assignment 1 Post Exhaust Turbines 2 2",
+                  "Contractor Assignment 1 Pre Exhaust Aluminum square louver 4",
+                  "Contractor Assignment 2 Post Exhaust Aluminum Square louver 9",
+                  "Contractor Assignment 2 Post Exhaust Mesh Ridge Vent 26 feet",
+                  "Contractor Assignment 2 Post Exhaust Plastic Ridge Vent 30ft",
+                  "Contractor Assignment 2 Post Exhaust Plastic Slant Back Louver 12 2",
+                  "Contractor Assignment 2 Post Exhaust Turbines 2 2",
+                  "Contractor Assignment 2 Pre Exhaust Plastic Ridge Vent 30ft",
+                  "Instructor Scenario 1 Post Exhaust Plastic Ridge Vent 22ft",
+                  "Instructor Scenario 1 Pre Exhaust Plastic Ridge Vent 10ft",
+                  "Instructor Scenario 2 Post Exhaust Ridge vent full",
+                  "Instructor Scenario 2 Pre Exhaust Plastic Ridge Vent full",
+                  "Instructor Scenario 3 Post Exhaust Square Roof Louver 6",
+                  "Instructor Scenario 3 Pre Exhaust Square Roof Louver 6",
                 ]}
               ></GuiQuestion>
             </Tab>
@@ -147,12 +159,24 @@ function App() {
                 setActivePreview={setActivePreview}
                 type={"intake"}
                 names={[
-                  "Plastic Gable Louvers",
-                  "Aluminum Undereave Intake Vent",
-                  "Continuous Undereave Vent",
-                  "Plastic Soffit Vent",
-                  "Roftop Intake Vent",
-                  "Closable Soffit Vent",
+                  "Contractor Assignment 1 Post Intake Aluminum Undereave Intake Vent 15",
+                  "Contractor Assignment 1 Post Intake Closable soffit vent 7",
+                  "Contractor Assignment 1 Post Intake Continuous Undereave Vent 48ft",
+                  "Contractor Assignment 1 Post Intake Plastic Soffit Vent 18 2",
+                  "Contractor Assignment 1 Post Intake Rooftop Intake Vent 43 feet",
+                  "Contractor Assignment 1 Pre Intake Aluminum Undereave Intake Vent 10 2",
+                  "Contractor Assignment 2 Post Intake Aluminum Undereave Intake Vent 21 2",
+                  "Contractor Assignment 2 Post Intake Closable Soffit Vent 10",
+                  "Contractor Assignment 2 Post Intake Continuous Undereave Vent 64ft 2",
+                  "Contractor Assignment 2 Post Intake Plastic Soffit Vent 25 2",
+                  "Contractor Assignment 2 Post Intake Rooftop Intake Vent 60ft",
+                  "Contractor Assignment 2 Pre Intake Closable soffit vent 8 2",
+                  "Instructor Scenario 1 Post Intake Plastic Soffit Vent 18",
+                  "Instructor Scenario 1 Pre Intake Plastic Soffit Vent 10",
+                  "Instructor Scenario 2 Post Intake Rooftop Vent full",
+                  "Instructor Scenario 2 Pre Intake Plastic Bird Block Holes 30ft",
+                  "Instructor Scenario 3 Post Intake Aluminum Undereave 5",
+                  "Instructor Scenario 3 Pre Intake Aluminum Undereave 5",
                 ]}
               ></GuiQuestion>
             </Tab>

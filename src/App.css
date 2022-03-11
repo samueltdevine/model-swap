@@ -88,7 +88,7 @@ body {
 .gui {
   width: 45%;
 }
-@media screen and (max-width: 1280px) {
+@media screen and (max-width: 1920px) {
   .wrapper {
     flex-direction: column;
   }
@@ -99,16 +99,17 @@ body {
     height: max-content;
   }
   .gui-body {
-    height: 25%;
+    height: 35%;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
   }
   .gui-body label {
     margin: 5px;
-    width: calc(33% - 10px);
+    /* height: 25%; */
+    width: calc(20% - 10px);
     padding: 10px;
-    font-size: 12px;
+    font-size: 10px;
   }
 }
 

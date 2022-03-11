@@ -23,7 +23,7 @@ const Products = (props) => {
   } = props;
 
   const houseOnly = useLoader(GLTFLoader, "/houseOnly7.gltf");
-  const products = useLoader(GLTFLoader, "/products7.gltf");
+  const products = useLoader(GLTFLoader, "/products10.gltf");
   const arrow = useLoader(GLTFLoader, "/arrow3.gltf");
 
   const degToRad = (deg) => {
@@ -97,7 +97,7 @@ const Products = (props) => {
     return meshesOnly;
   };
 
-  const exhausts = getUniqeNodesAndGroupsByKeyContaining("exhaust", products);
+  const exhausts = getUniqeNodesAndGroupsByKeyContaining("Exhaust", products);
   exhausts.sort(function (a, b) {
     if (a.name < b.name) {
       return -1;
@@ -107,7 +107,7 @@ const Products = (props) => {
     }
     return 0;
   });
-  const intakes = getUniqeNodesAndGroupsByKeyContaining("intake", products);
+  const intakes = getUniqeNodesAndGroupsByKeyContaining("Intake", products);
   intakes.sort(function (a, b) {
     if (a.name < b.name) {
       return -1;
@@ -117,6 +117,14 @@ const Products = (props) => {
     }
     return 0;
   });
+
+  const intakeNames = [];
+  const exhaustNames = [];
+  intakes.forEach((i) => intakeNames.push(i.name));
+  exhausts.forEach((i) => exhaustNames.push(i.name));
+  console.log("intakes", intakeNames);
+  console.log("exhauts", exhaustNames);
+  // debugger;
   const houseOnlyMeshes = getUniqeNodesByKey("Mesh", houseOnly);
   const meshesOnly = getMeshesOnly(houseOnlyMeshes);
   const sidingNormal = useLoader(TextureLoader, "NormalMap6.png");
@@ -240,106 +248,6 @@ const Products = (props) => {
               )}
             </group>
           )}
-
-          {/* {currentExhaustNum <= 2 && (
-            <group>
-              <JiggleArrow
-                obj={arrow}
-                color={"red"}
-                position={[-640, 900, -75]}
-                rotation={[degToRad(0), degToRad(180), degToRad(90)]}
-              />
-              <JiggleArrow
-                obj={arrow}
-                color={"red"}
-                position={[0, 900, -75]}
-                rotation={[degToRad(0), degToRad(180), degToRad(90)]}
-              />
-              <JiggleArrow
-                obj={arrow}
-                color={"red"}
-                position={[-640, 900, 150]}
-                rotation={[degToRad(0), degToRad(0), degToRad(90)]}
-              />
-              <JiggleArrow
-                obj={arrow}
-                color={"red"}
-                position={[0, 900, 150]}
-                rotation={[degToRad(0), degToRad(0), degToRad(90)]}
-              />
-            </group>
-          )}
-          {currentExhaustNum === 1 ||
-            currentExhaustNum === 2 ||
-            currentExhaustNum === 0 ||
-            currentExhaustNum === 6 || (
-              <group>
-                <JiggleArrow
-                  obj={arrow}
-                  color={"red"}
-                  position={[-640, 1000, -50]}
-                  rotation={[degToRad(90), degToRad(180), 0]}
-                />
-                <JiggleArrow
-                  obj={arrow}
-                  color={"red"}
-                  position={[0, 1000, -50]}
-                  rotation={[degToRad(90), degToRad(180), 0]}
-                />
-              </group>
-            )}
-          {currentExhaustNum === 6 && (
-            <group>
-              <JiggleArrow
-                obj={arrow}
-                color={"red"}
-                position={[350, 775, 50]}
-                rotation={[degToRad(0), degToRad(90), degToRad(90)]}
-              />
-            </group>
-          )}
-          {currentIntakeNum === 1 && (
-            <group>
-              <JiggleArrow
-                obj={arrow}
-                color={"blue"}
-                position={[-1000, 625, 50]}
-                rotation={[degToRad(0), degToRad(90), degToRad(90)]}
-              />
-            </group>
-          )}
-          {currentIntakeNum === 1 || currentIntakeNum === 5 || (
-            <group>
-              <JiggleArrow
-                obj={arrow}
-                color={"blue"}
-                position={[-640, 450, 550]}
-                rotation={[degToRad(90), degToRad(180), 0]}
-              />
-              <JiggleArrow
-                obj={arrow}
-                color={"blue"}
-                position={[0, 450, 550]}
-                rotation={[degToRad(90), degToRad(180), 0]}
-              />
-            </group>
-          )}
-          {currentIntakeNum === 5 && (
-            <group>
-              <JiggleArrow
-                obj={arrow}
-                color={"blue"}
-                position={[-640, 570, 650]}
-                rotation={[degToRad(25), degToRad(180), 0]}
-              />
-              <JiggleArrow
-                obj={arrow}
-                color={"blue"}
-                position={[0, 570, 650]}
-                rotation={[degToRad(25), degToRad(180), 0]}
-              />
-            </group>
-          )} */}
         </group>
       </Suspense>
     </>

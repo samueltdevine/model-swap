@@ -138,6 +138,188 @@ const GuiQuestion = (props, children) => {
             />
             {names[5]}
           </label>
+          <label onClick={(e) => setActivePreview([7, type])}>
+            <input
+              type="radio"
+              name="7"
+              value={7}
+              checked={activeNum === 7}
+              onChange={(event) => {
+                checkAnimation(event, answer, 7);
+                setActiveNum(7);
+              }}
+            />
+            {names[6]}
+          </label>
+          <label onClick={(e) => setActivePreview([8, type])}>
+            <input
+              type="radio"
+              name="8"
+              value={8}
+              checked={activeNum === 8}
+              onChange={(event) => {
+                checkAnimation(event, answer, 8);
+                setActiveNum(8);
+              }}
+            />
+            {names[7]}
+          </label>
+          <label onClick={(e) => setActivePreview([9, type])}>
+            <input
+              type="radio"
+              name="9"
+              value={9}
+              checked={activeNum === 9}
+              onChange={(event) => {
+                checkAnimation(event, answer, 9);
+                setActiveNum(9);
+              }}
+            />
+            {names[8]}
+          </label>
+          <label onClick={(e) => setActivePreview([10, type])}>
+            <input
+              type="radio"
+              name="10"
+              value={10}
+              checked={activeNum === 10}
+              onChange={(event) => {
+                checkAnimation(event, answer, 10);
+                setActiveNum(10);
+              }}
+            />
+            {names[9]}
+          </label>
+          <label onClick={(e) => setActivePreview([11, type])}>
+            <input
+              type="radio"
+              name="11"
+              value={11}
+              checked={activeNum === 11}
+              onChange={(event) => {
+                checkAnimation(event, answer, 11);
+                setActiveNum(11);
+              }}
+            />
+            {names[10]}
+          </label>
+          <label onClick={(e) => setActivePreview([12, type])}>
+            <input
+              type="radio"
+              name="12"
+              value={12}
+              checked={activeNum === 12}
+              onChange={(event) => {
+                checkAnimation(event, answer, 12);
+                setActiveNum(12);
+              }}
+            />
+            {names[11]}
+          </label>
+          <label onClick={(e) => setActivePreview([12, type])}>
+            <input
+              type="radio"
+              name="12"
+              value={12}
+              checked={activeNum === 12}
+              onChange={(event) => {
+                checkAnimation(event, answer, 12);
+                setActiveNum(12);
+              }}
+            />
+            {names[11]}
+          </label>
+          <label onClick={(e) => setActivePreview([13, type])}>
+            <input
+              type="radio"
+              name="13"
+              value={13}
+              checked={activeNum === 13}
+              onChange={(event) => {
+                checkAnimation(event, answer, 13);
+                setActiveNum(13);
+              }}
+            />
+            {names[12]}
+          </label>
+          <label onClick={(e) => setActivePreview([14, type])}>
+            <input
+              type="radio"
+              name="14"
+              value={14}
+              checked={activeNum === 14}
+              onChange={(event) => {
+                checkAnimation(event, answer, 14);
+                setActiveNum(14);
+              }}
+            />
+            {names[13]}
+          </label>
+          <label onClick={(e) => setActivePreview([15, type])}>
+            <input
+              type="radio"
+              name="15"
+              value={15}
+              checked={activeNum === 15}
+              onChange={(event) => {
+                checkAnimation(event, answer, 15);
+                setActiveNum(15);
+              }}
+            />
+            {names[14]}
+          </label>
+          <label onClick={(e) => setActivePreview([16, type])}>
+            <input
+              type="radio"
+              name="16"
+              value={16}
+              checked={activeNum === 16}
+              onChange={(event) => {
+                checkAnimation(event, answer, 16);
+                setActiveNum(16);
+              }}
+            />
+            {names[15]}
+          </label>
+          <label onClick={(e) => setActivePreview([17, type])}>
+            <input
+              type="radio"
+              name="17"
+              value={17}
+              checked={activeNum === 17}
+              onChange={(event) => {
+                checkAnimation(event, answer, 17);
+                setActiveNum(17);
+              }}
+            />
+            {names[16]}
+          </label>
+          <label onClick={(e) => setActivePreview([17, type])}>
+            <input
+              type="radio"
+              name="17"
+              value={17}
+              checked={activeNum === 17}
+              onChange={(event) => {
+                checkAnimation(event, answer, 17);
+                setActiveNum(17);
+              }}
+            />
+            {names[16]}
+          </label>
+          <label onClick={(e) => setActivePreview([18, type])}>
+            <input
+              type="radio"
+              name="18"
+              value={18}
+              checked={activeNum === 18}
+              onChange={(event) => {
+                checkAnimation(event, answer, 18);
+                setActiveNum(18);
+              }}
+            />
+            {names[17]}
+          </label>
           <label
             // onPointerOver={(e) => console.log("hit1")}
             onClick={(e) => setActivePreview([0, type])}
