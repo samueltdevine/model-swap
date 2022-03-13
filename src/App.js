@@ -176,7 +176,7 @@ function App() {
                   "Instructor Scenario 1 Pre Intake Plastic Soffit Vent 10",
                   "Instructor Scenario 2 Post Intake Rooftop Vent full",
                   "Instructor Scenario 2 Pre Intake Plastic Bird Block Holes 30ft",
-                  "Instructor Scenario 3 Post Intake Aluminum Undereave 5",
+                  "Instructor Scenario 3 Post Intake Aluminum Undereave 10",
                   "Instructor Scenario 3 Pre Intake Aluminum Undereave 5",
                 ]}
               ></GuiQuestion>
