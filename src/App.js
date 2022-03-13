@@ -100,10 +100,10 @@ function App() {
             }}
           >
             <div style={{ display: "flex" }}>
-              <label onClick={() => setActivePreview([14, "reset"])}>
+              <label onClick={() => setActivePreview([38, "reset"])}>
                 Back
               </label>
-              <label onClick={() => setActivePreview([13, "reset"])}>
+              <label onClick={() => setActivePreview([39, "reset"])}>
                 Front
               </label>
             </div>

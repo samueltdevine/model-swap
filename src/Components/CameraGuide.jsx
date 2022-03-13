@@ -42,7 +42,7 @@ const CameraGuide = (props) => {
     }
   }
   if (atticMode === true) {
-    lastNum = 15;
+    lastNum = 37;
     // wasAttic = true;
   } else {
     // wasAttic = "was";
@@ -297,25 +297,27 @@ const matrices = {
   16: cam3underEave,
   17: cam3underEave,
   18: cam3underEave,
-  19: cam5topRidge,
+  19: cam6topBack,
   20: cam5topRidge,
-  21: cam6topBack,
+  21: cam5topRidge,
   22: cam6topBack,
   23: cam6topBack,
   24: cam6topBack,
-  25: cam5topRidge,
+  25: cam6topBack,
   26: cam5topRidge,
   27: cam5topRidge,
-  28: cam5topRidge,
-  29: cam5topRidge,
+  28: cam6topBack,
+  29: cam6topBack,
   30: cam5topRidge,
   31: cam5topRidge,
   32: cam5topRidge,
   33: cam5topRidge,
   34: cam5topRidge,
-  35: cam5topRidge,
-  36: cam5topRidge,
-  37: cam5topRidge,
+  35: cam6topBack,
+  36: cam6topBack,
+  37: cam10attic,
+  38: cam9,
+  39: cam8,
 };
 
 export const MemoizedCameraGuide = React.memo(CameraGuide);
