@@ -224,7 +224,7 @@ const cam5topRidge = {
 const cam6topBack = {
   Vector3: {
     x: -3.2869739864650266,
-    y: 3.07564238529690632,
+    y: 3.27564238529690632,
     z: -0.4085620661380885,
   },
   Quaternion: {
