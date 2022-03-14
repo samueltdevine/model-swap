@@ -33,18 +33,14 @@ const GuiQuestion = (props, children) => {
   let setActiveNum = undefined;
 
   if (type === "exhaust") {
-    activeNum = activeExhaustNum - 1;
-  } else {
-    activeNum = activeIntakeNum;
-  }
-  if (type === "exhaust") {
+    activeNum = activeExhaustNum;
     setActiveNum = setActiveExhaustNum;
-  } else {
-    setActiveNum = setActiveIntakeNum;
-  }
-  if (type === "attic") {
+  } else if (type === "attic") {
     activeNum = atticNum;
     setActiveNum = setAtticNum;
+  } else if (type === "intake") {
+    activeNum = activeIntakeNum;
+    setActiveNum = setActiveIntakeNum;
   }
   return (
     <div
