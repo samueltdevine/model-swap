@@ -245,7 +245,7 @@ const Arrows = (props) => {
         exhaustBack.map((curve) => (
           <Arrow lineDisplay color="red" curve={curve} />
         ))}
-      {activeExhaustNum === 17 &&
+      {activeExhaustNum === 18 &&
         exhaustBack.map((curve) => (
           <Arrow lineDisplay color="red" curve={curve} />
         ))}
