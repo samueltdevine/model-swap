@@ -263,17 +263,17 @@ function App() {
               /> */}
               <Noise opacity={0.01} />
             </EffectComposer>
-            {/* <OrbitControls
+            <OrbitControls
               target={[-1, 1, 0]}
               maxDistance={6}
               maxPolarAngle={THREE.MathUtils.degToRad(99)}
-            /> */}
-            <CameraLogger />
-            <MemoizedCameraGuide
+            />
+            {/* <CameraLogger /> */}
+            {/* <MemoizedCameraGuide
               atticMode={atticMode}
               // setAtticMode={setAtticMode}
               lastSelected={activePreview}
-            />
+            /> */}
           </Canvas>
         </div>
       </div>
