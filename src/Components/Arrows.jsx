@@ -16,7 +16,7 @@ const Arrows = (props) => {
   console.log("activeExhaustNum", activeExhaustNum);
   console.log("activeIntakeNum", activeIntakeNum);
 
-  const fbx = useLoader(FBXLoader, "/splines9.fbx");
+  const fbx = useLoader(FBXLoader, "/splines11.fbx");
   const splineArray = fbx.children;
 
   const getByString = (str, array) => {
@@ -78,9 +78,9 @@ const Arrows = (props) => {
     return curves;
   }, [fbx]);
 
-  const exhaust3s = getByString("exhaust3", splineArray);
+  const exhaust3s = getByString("exhaust1", splineArray);
   const exhaustBack = useMemo(() => {
-    const curves = bufferGeomstoCurves(exhaust3s);
+    const curves = bufferGeomstoCurves(exhaust1s);
     return curves;
   }, [fbx]);
 

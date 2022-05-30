@@ -22,9 +22,14 @@ const Products = (props) => {
     atticNum,
   } = props;
 
-  const houseOnly = useLoader(GLTFLoader, "/houseOnly7.gltf");
-  const products = useLoader(GLTFLoader, "/products13.gltf");
+  const houseOnly = useLoader(GLTFLoader, "/houseOnly13.gltf");
+  const products = useLoader(GLTFLoader, "/products14.gltf");
   const arrow = useLoader(GLTFLoader, "/arrow3.gltf");
+  const lightsAttic = useLoader(FBXLoader, "/houseOnly13lights.fbx");
+  // debugger;
+  const lightGroupPos1 = lightsAttic.children[0].position;
+  const lightGroupPos2 = lightsAttic.children[1].position;
+  // const lightsAttic = useLoader(FBXLoader, "/house13lights.fbx");
 
   const degToRad = (deg) => {
     const rad = THREE.MathUtils.degToRad(deg);
@@ -97,7 +102,7 @@ const Products = (props) => {
     return meshesOnly;
   };
 
-  const exhausts = getUniqeNodesAndGroupsByKeyContaining("Exhaust", products);
+  const exhausts = getUniqeNodesAndGroupsByKeyContaining("exhaust", products);
   exhausts.sort(function (a, b) {
     if (a.name < b.name) {
       return -1;
@@ -107,7 +112,7 @@ const Products = (props) => {
     }
     return 0;
   });
-  const intakes = getUniqeNodesAndGroupsByKeyContaining("Intake", products);
+  const intakes = getUniqeNodesAndGroupsByKeyContaining("intake", products);
   intakes.sort(function (a, b) {
     if (a.name < b.name) {
       return -1;
@@ -128,6 +133,8 @@ const Products = (props) => {
   const houseOnlyMeshes = getUniqeNodesByKey("Mesh", houseOnly);
   const meshesOnly = getMeshesOnly(houseOnlyMeshes);
   const sidingNormal = useLoader(TextureLoader, "NormalMap6.png");
+  const sidingBump = useLoader(TextureLoader, "Bump4.png");
+  const moldMap = useLoader(TextureLoader, "Mold.png");
   //   const sidingbump = useTexture("outer_wallsBump.png");
   const sidingNormalAttic = useTexture("NormalMap6.png");
   houseOnly.materials["Siding"].color = { b: 0.8, g: 0.8, r: 0.8 };
@@ -139,17 +146,27 @@ const Products = (props) => {
   });
 
   //   houseOnly.materials["Siding"] = sidingMat;
-  houseOnly.materials["Siding"].normalMap = sidingNormal;
+  // houseOnly.materials["Siding"].normalMap = sidingNormal;
+  // houseOnly.materials["Siding"].bumpMap = sidingBump;
+  // debugger;
   // houseOnly.materials["Siding_attic"].normalMap = sidingNormalAttic;
   //   debugger;
 
   const mat = houseOnly.materials["window"];
   const matPlace = new THREE.MeshStandardMaterial();
   mat.opacity = 0.36;
+  // debugger;
   //   houseOnly.nodes["outer_walls"].castShadow = true;
   //   houseOnly.nodes["outer_walls"].material = mat;
-  houseOnly.nodes["outer_walls"].material.normalMap = sidingNormal;
-  houseOnly.nodes["attic_cutout"].material.normalMap = sidingNormalAttic;
+  houseOnly.nodes["outer_walls"].material.refractionRatio = 0;
+  // houseOnly.nodes["outer_walls"].material.normalMap = sidingNormal;
+  console.log("siding", houseOnly, houseOnly.nodes["outer_walls"].material);
+  houseOnly.nodes["outer_walls"].material.color = { b: 0.8, g: 0.8, r: 0.8 };
+
+  houseOnly.nodes["attic_cutout"].material.bumpMap = sidingBump;
+  // debugger;
+  houseOnly.nodes["attic_cutout"].material.bumpScale = 0.01;
+
   houseOnly.nodes["outer_walls"].receiveShadow = true;
   //   houseOnly.nodes["outer_walls"].visible = false;
   houseOnly.nodes["attic_cutout"].castShadow = true;
@@ -165,6 +182,15 @@ const Products = (props) => {
   houseOnly.nodes["Ground"].receiveShadow = true;
   houseOnly.nodes["Ground"].castShadow = false;
   const mold = houseOnly.materials["Insulation"].clone();
+
+  const light1 = new THREE.PointLight(0xffffff, 0.25);
+  light1.position.setX(lightGroupPos1.x);
+  light1.position.setZ(lightGroupPos1.z - 20);
+  light1.position.setY(lightGroupPos1.y - 20);
+  const light2 = light1.clone();
+  light2.position.setX(lightGroupPos1.x - 300);
+  const light3 = light1.clone();
+  light3.position.setX(lightGroupPos1.x - 200);
   //   debugger;
   if (atticMode === true) {
     // houseOnly.nodes["attic_cutout"].visible = false;
@@ -187,6 +213,7 @@ const Products = (props) => {
       // houseOnly.materials["Insulation"] = matPlace;
     }
     if (atticNum === 2) {
+      // mold.map = moldMap;
       houseOnly.nodes["Stud"].material = mold;
       houseOnly.nodes["insulation"].material = mold;
       houseOnly.nodes["extra_insulation"].visible = false;
@@ -211,6 +238,9 @@ const Products = (props) => {
       houseOnly.nodes["extra_insulation"].visible = true;
       houseOnly.nodes["Stud"].material = matPlace;
       houseOnly.nodes["insulation"].material = matPlace;
+      light1.intensity = 0;
+      light2.intensity = 0;
+      light3.intensity = 0;
     }
   } else {
     houseOnly.nodes["attic_cutout"].visible = true;
@@ -230,23 +260,26 @@ const Products = (props) => {
           // position={[1.2, -2, 0]}
         >
           <primitive object={houseOnly.scene} />
-          {atticMode === false && (
-            <group>
-              {currentExhaustNum !== null && (
-                <primitive
-                  ref={refExhaust}
-                  onBeforeRender={(e) => onActiveExhaust(refExhaust)}
-                  object={exhausts[currentExhaustNum - 1]}
-                />
-              )}
-              {currentIntakeNum !== null && (
-                <primitive
-                  ref={refIntake}
-                  onBeforeRender={(e) => onActiveIntake(refIntake)}
-                  object={intakes[currentIntakeNum - 1]}
-                />
-              )}
-            </group>
+          <primitive object={light1} />
+          <primitive object={light2} />
+          <primitive object={light3} />
+          {/* <primitive object={lightsAttic} /> */}
+          <group>
+            {currentExhaustNum !== null && (
+              <primitive
+                ref={refExhaust}
+                onBeforeRender={(e) => onActiveExhaust(refExhaust)}
+                object={exhausts[currentExhaustNum - 1]}
+              />
+            )}
+            {currentIntakeNum !== null && (
+              <primitive
+                ref={refIntake}
+                onBeforeRender={(e) => onActiveIntake(refIntake)}
+                object={intakes[currentIntakeNum - 1]}
+              />
+            )}
+          </group>
           )}
         </group>
       </Suspense>
