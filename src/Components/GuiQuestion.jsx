@@ -66,6 +66,87 @@ const GuiQuestion = (props, children) => {
         />
         {names[0]}
       </label>
+      <label
+        // onPointerOver={(e) => console.log("hit1")}
+        onClick={(e) => setActivePreview([2, type])}
+      >
+        <input
+          type="radio"
+          name="2"
+          value={2}
+          checked={activeNum === 2}
+          onChange={(event) => {
+            checkAnimation(event, answer, 2);
+            setActiveNum(2);
+          }}
+        />
+        {names[1]}
+      </label>
+      <label
+        // onPointerOver={(e) => console.log("hit1")}
+        onClick={(e) => setActivePreview([3, type])}
+      >
+        <input
+          type="radio"
+          name="3"
+          value={3}
+          checked={activeNum === 3}
+          onChange={(event) => {
+            checkAnimation(event, answer, 3);
+            setActiveNum(3);
+          }}
+        />
+        {names[2]}
+      </label>
+      <label
+        // onPointerOver={(e) => console.log("hit1")}
+        onClick={(e) => setActivePreview([4, type])}
+      >
+        <input
+          type="radio"
+          name="4"
+          value={4}
+          checked={activeNum === 4}
+          onChange={(event) => {
+            checkAnimation(event, answer, 4);
+            setActiveNum(4);
+          }}
+        />
+        {names[3]}
+      </label>
+      <label
+        // onPointerOver={(e) => console.log("hit1")}
+        onClick={(e) => setActivePreview([5, type])}
+      >
+        <input
+          type="radio"
+          name="5"
+          value={5}
+          checked={activeNum === 5}
+          onChange={(event) => {
+            checkAnimation(event, answer, 5);
+            setActiveNum(5);
+          }}
+        />
+        {names[4]}
+      </label>
+      {type === "exhaust" && (
+        <>
+          <label onClick={(e) => setActivePreview([6, type])}>
+            <input
+              type="radio"
+              name="6"
+              value={6}
+              checked={activeNum === 6}
+              onChange={(event) => {
+                checkAnimation(event, answer, 6);
+                setActiveNum(6);
+              }}
+            />
+            {names[5]}
+          </label>
+        </>
+      )}
       {atticMode === true && (
         <>
           <label onClick={(e) => setActivePreview([2, type])}>
@@ -109,6 +190,7 @@ const GuiQuestion = (props, children) => {
           </label>
         </>
       )}
+
       {atticMode === false && (
         <>
           {/* <label onClick={(e) => setActivePreview([5, type])}>

@@ -130,7 +130,12 @@ function App() {
                 // answer={3}
                 type={"exhaust"}
                 names={[
-                  "example",
+                  "Plastic Ridge Vent",
+                  "Mesh Ridge Vent",
+                  "Plastic Slant Back Roof Louver",
+                  "Aluminum Square Roof Louver",
+                  '12" Internally Braced Wind Turbine',
+                  "Plastic Gable Louvers",
                   // "Contractor Assignment 1 Post Exhaust Mesh Ridge Vent 23ft",
                   // "Contractor Assignment 1 Post Exhaust Plastic Ridge Vent 22ft",
                   // "Contractor Assignment 1 Post Exhaust Platic Slant Back Louvers 11",
@@ -160,7 +165,11 @@ function App() {
                 setActivePreview={setActivePreview}
                 type={"intake"}
                 names={[
-                  "example",
+                  "Aluminum Undereave Intake Vent",
+                  "Continuous Undereave Vent",
+                  "Plastic Soffit Vent",
+                  "Roftop Intake Vent",
+                  "Closable Soffit Vent",
                   // "Contractor Assignment 1 Post Intake Closable soffit vent 7",
                   // "Contractor Assignment 1 Post Intake Continuous Undereave Vent 48ft",
                   // "Contractor Assignment 1 Post Intake Plastic Soffit Vent 18",

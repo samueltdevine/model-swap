@@ -16,7 +16,7 @@ const Arrows = (props) => {
   console.log("activeExhaustNum", activeExhaustNum);
   console.log("activeIntakeNum", activeIntakeNum);
 
-  const fbx = useLoader(FBXLoader, "/splines11.fbx");
+  const fbx = useLoader(FBXLoader, "/splines13.fbx");
   const splineArray = fbx.children;
 
   const getByString = (str, array) => {
@@ -66,9 +66,14 @@ const Arrows = (props) => {
     const curves = bufferGeomstoCurves(intake2s);
     return curves;
   }, [fbx]);
-  const intake5s = getByString("intake4", splineArray);
+  const intake3s = getByString("intake3", splineArray);
   const intake3curveRoof = useMemo(() => {
-    const curves = bufferGeomstoCurves(intake5s);
+    const curves = bufferGeomstoCurves(intake3s);
+    return curves;
+  }, [fbx]);
+  const intake4s = getByString("intake4", splineArray);
+  const intake4curveRoof = useMemo(() => {
+    const curves = bufferGeomstoCurves(intake4s);
     return curves;
   }, [fbx]);
 
@@ -97,7 +102,7 @@ const Arrows = (props) => {
   }, [fbx]);
 
   const exhaust6s = getByString("exhaust6", splineArray);
-  const exhaust6curves = useMemo(() => {
+  const exhaust6line = useMemo(() => {
     const curves = bufferGeomstoCurves(exhaust6s);
     return curves;
   }, [fbx]);
@@ -117,14 +122,14 @@ const Arrows = (props) => {
           <Arrow lineDisplay color="blue" curve={curve} />
         ))}
       {activeIntakeNum === 4 &&
-        intake2curveUnderEave.map((curve) => (
+        intake4curveRoof.map((curve) => (
           <Arrow lineDisplay color="blue" curve={curve} />
         ))}
       {activeIntakeNum === 5 &&
         intake3curveRoof.map((curve) => (
           <Arrow lineDisplay color="blue" curve={curve} />
         ))}
-      {activeIntakeNum === 6 &&
+      {/* {activeIntakeNum === 6 &&
         intake2curveUnderEave.map((curve) => (
           <Arrow lineDisplay color="blue" curve={curve} />
         ))}
@@ -175,7 +180,7 @@ const Arrows = (props) => {
       {activeIntakeNum === 18 &&
         intake2curveUnderEave.map((curve) => (
           <Arrow lineDisplay color="blue" curve={curve} />
-        ))}
+        ))} */}
 
       {activeExhaustNum === 1 &&
         exhaustBack.map((curve) => (
@@ -198,10 +203,10 @@ const Arrows = (props) => {
           <Arrow lineDisplay color="red" curve={curve} />
         ))}
       {activeExhaustNum === 6 &&
-        exhaustBack.map((curve) => (
+        exhaust6line.map((curve) => (
           <Arrow lineDisplay color="red" curve={curve} />
         ))}
-      {activeExhaustNum === 7 &&
+      {/* {activeExhaustNum === 7 &&
         exhaustBack.map((curve) => (
           <Arrow lineDisplay color="red" curve={curve} />
         ))}
@@ -248,7 +253,7 @@ const Arrows = (props) => {
       {activeExhaustNum === 18 &&
         exhaustBack.map((curve) => (
           <Arrow lineDisplay color="red" curve={curve} />
-        ))}
+        ))} */}
     </>
   );
 };
