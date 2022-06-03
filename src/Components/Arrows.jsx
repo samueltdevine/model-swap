@@ -127,14 +127,66 @@ const Arrows = (props) => {
           <Arrow lineDisplay color="blue" curve={curve} />
         ))}
       {activeIntakeNum === 4 &&
-        intake4curveRoof.map((curve) => (
+        intake2curveUnderEave.map((curve) => (
           <Arrow lineDisplay color="blue" curve={curve} />
         ))}
       {activeIntakeNum === 5 &&
-        intake3curveRoof.map((curve) => (
+        intake4curveRoof.map((curve) => (
           <Arrow lineDisplay color="blue" curve={curve} />
         ))}
       {activeIntakeNum === 6 &&
+        intake2curveUnderEave.map((curve) => (
+          <Arrow lineDisplay color="blue" curve={curve} />
+        ))}
+      {activeIntakeNum === 7 &&
+        intake2curveUnderEave.map((curve) => (
+          <Arrow lineDisplay color="blue" curve={curve} />
+        ))}
+      {activeIntakeNum === 8 &&
+        intake2curveUnderEave.map((curve) => (
+          <Arrow lineDisplay color="blue" curve={curve} />
+        ))}
+      {activeIntakeNum === 9 &&
+        intake2curveUnderEave.map((curve) => (
+          <Arrow lineDisplay color="blue" curve={curve} />
+        ))}
+      {activeIntakeNum === 10 &&
+        intake2curveUnderEave.map((curve) => (
+          <Arrow lineDisplay color="blue" curve={curve} />
+        ))}
+      {activeIntakeNum === 11 &&
+        intake4curveRoof.map((curve) => (
+          <Arrow lineDisplay color="blue" curve={curve} />
+        ))}
+      {activeIntakeNum === 12 &&
+        intake2curveUnderEave.map((curve) => (
+          <Arrow lineDisplay color="blue" curve={curve} />
+        ))}
+      {activeIntakeNum === 1 + 12 &&
+        intake2curveUnderEave.map((curve) => (
+          <Arrow lineDisplay color="blue" curve={curve} />
+        ))}
+      {activeIntakeNum === 2 + 12 &&
+        intake2curveUnderEave.map((curve) => (
+          <Arrow lineDisplay color="blue" curve={curve} />
+        ))}
+      {activeIntakeNum === 3 + 12 &&
+        intake2curveUnderEave.map((curve) => (
+          <Arrow lineDisplay color="blue" curve={curve} />
+        ))}
+      {activeIntakeNum === 4 + 12 &&
+        intake4curveRoof.map((curve) => (
+          <Arrow lineDisplay color="blue" curve={curve} />
+        ))}
+      {activeIntakeNum === 5 + 12 &&
+        intake3curveRoof.map((curve) => (
+          <Arrow lineDisplay color="blue" curve={curve} />
+        ))}
+      {activeIntakeNum === 6 + 12 &&
+        intake6louver.map((curve) => (
+          <Arrow lineDisplay color="blue" curve={curve} />
+        ))}
+      {activeIntakeNum === 7 + 12 &&
         intake6louver.map((curve) => (
           <Arrow lineDisplay color="blue" curve={curve} />
         ))}
@@ -187,27 +239,31 @@ const Arrows = (props) => {
           <Arrow lineDisplay color="blue" curve={curve} />
         ))} */}
 
-      {activeExhaustNum === 1 &&
+      {activeExhaustNum <= 13 &&
         exhaustBack.map((curve) => (
           <Arrow lineDisplay color="red" curve={curve} />
         ))}
-      {activeExhaustNum === 2 &&
+      {activeExhaustNum === 1 + 12 &&
+        exhaustBack.map((curve) => (
+          <Arrow lineDisplay color="red" curve={curve} />
+        ))}
+      {activeExhaustNum === 2 + 12 &&
         exhaustRidge.map((curve) => (
           <Arrow lineDisplay color="red" curve={curve} />
         ))}
-      {activeExhaustNum === 3 &&
+      {activeExhaustNum === 3 + 12 &&
         exhaustRidge.map((curve) => (
           <Arrow lineDisplay color="red" curve={curve} />
         ))}
-      {activeExhaustNum === 4 &&
+      {activeExhaustNum === 4 + 12 &&
         exhaust4curves.map((curve) => (
           <Arrow lineDisplay color="red" curve={curve} />
         ))}
-      {activeExhaustNum === 5 &&
+      {activeExhaustNum === 5 + 12 &&
         exhaustTurbines.map((curve) => (
           <Arrow lineDisplay color="red" curve={curve} />
         ))}
-      {activeExhaustNum === 6 &&
+      {activeExhaustNum === 6 + 12 &&
         exhaust6line.map((curve) => (
           <Arrow lineDisplay color="red" curve={curve} />
         ))}

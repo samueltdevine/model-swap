@@ -23,7 +23,7 @@ const Products = (props) => {
   } = props;
 
   const houseOnly = useLoader(GLTFLoader, "/houseOnly13.gltf");
-  const products = useLoader(GLTFLoader, "/products17.gltf");
+  const products = useLoader(GLTFLoader, "/products19.gltf");
   const arrow = useLoader(GLTFLoader, "/arrow3.gltf");
   const lightsAttic = useLoader(FBXLoader, "/houseOnly13lights.fbx");
   // debugger;
@@ -102,7 +102,7 @@ const Products = (props) => {
     return meshesOnly;
   };
 
-  const exhausts = getUniqeNodesAndGroupsByKeyContaining("exhaust", products);
+  const exhausts = getUniqeNodesAndGroupsByKeyContaining("Exhaust", products);
   exhausts.sort(function (a, b) {
     if (a.name < b.name) {
       return -1;
@@ -112,7 +112,7 @@ const Products = (props) => {
     }
     return 0;
   });
-  const intakes = getUniqeNodesAndGroupsByKeyContaining("intake", products);
+  const intakes = getUniqeNodesAndGroupsByKeyContaining("Intake", products);
   intakes.sort(function (a, b) {
     if (a.name < b.name) {
       return -1;
@@ -241,6 +241,17 @@ const Products = (props) => {
       light1.intensity = 0;
       light2.intensity = 0;
       light3.intensity = 0;
+    }
+    if (atticNum === 5) {
+      houseOnly.nodes["Baffles_2"].visible = false;
+      houseOnly.nodes["ice_1"].visible = false;
+      houseOnly.nodes["ice_2"].visible = false;
+      houseOnly.nodes["extra_insulation"].visible = false;
+      houseOnly.nodes["Stud"].material = matPlace;
+      houseOnly.nodes["insulation"].material = matPlace;
+      // light1.intensity = 0;
+      // light2.intensity = 0;
+      // light3.intensity = 0;
     }
   } else {
     houseOnly.nodes["attic_cutout"].visible = true;
