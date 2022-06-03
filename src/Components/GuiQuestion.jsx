@@ -131,7 +131,7 @@ const GuiQuestion = (props, children) => {
       </label>
       {/* {type === "exhaust" && ( */}
 
-      {atticMode === "false" && (
+      {atticMode === false && (
         <>
           <label onClick={(e) => setActivePreview([6, type])}>
             <input

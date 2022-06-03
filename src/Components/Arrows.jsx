@@ -16,7 +16,7 @@ const Arrows = (props) => {
   console.log("activeExhaustNum", activeExhaustNum);
   console.log("activeIntakeNum", activeIntakeNum);
 
-  const fbx = useLoader(FBXLoader, "/splines16.fbx");
+  const fbx = useLoader(FBXLoader, "/splines17.fbx");
   const splineArray = fbx.children;
 
   const getByString = (str, array) => {
