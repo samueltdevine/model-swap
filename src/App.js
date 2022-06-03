@@ -170,6 +170,7 @@ function App() {
                   "Plastic Soffit Vent",
                   "Roftop Intake Vent",
                   "Closable Soffit Vent",
+                  "Plastic Gable Louvers",
                   // "Contractor Assignment 1 Post Intake Closable soffit vent 7",
                   // "Contractor Assignment 1 Post Intake Continuous Undereave Vent 48ft",
                   // "Contractor Assignment 1 Post Intake Plastic Soffit Vent 18",

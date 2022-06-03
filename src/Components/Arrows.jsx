@@ -16,7 +16,7 @@ const Arrows = (props) => {
   console.log("activeExhaustNum", activeExhaustNum);
   console.log("activeIntakeNum", activeIntakeNum);
 
-  const fbx = useLoader(FBXLoader, "/splines13.fbx");
+  const fbx = useLoader(FBXLoader, "/splines16.fbx");
   const splineArray = fbx.children;
 
   const getByString = (str, array) => {
@@ -76,6 +76,11 @@ const Arrows = (props) => {
     const curves = bufferGeomstoCurves(intake4s);
     return curves;
   }, [fbx]);
+  const intake6s = getByString("intake6", splineArray);
+  const intake6louver = useMemo(() => {
+    const curves = bufferGeomstoCurves(intake6s);
+    return curves;
+  }, [fbx]);
 
   const exhaust1s = getByString("exhaust1", splineArray);
   const exhaustRidge = useMemo(() => {
@@ -129,11 +134,11 @@ const Arrows = (props) => {
         intake3curveRoof.map((curve) => (
           <Arrow lineDisplay color="blue" curve={curve} />
         ))}
-      {/* {activeIntakeNum === 6 &&
-        intake2curveUnderEave.map((curve) => (
+      {activeIntakeNum === 6 &&
+        intake6louver.map((curve) => (
           <Arrow lineDisplay color="blue" curve={curve} />
         ))}
-      {activeIntakeNum === 7 &&
+      {/* {activeIntakeNum === 7 &&
         intake2curveUnderEave.map((curve) => (
           <Arrow lineDisplay color="blue" curve={curve} />
         ))}

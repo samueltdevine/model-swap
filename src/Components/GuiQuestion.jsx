@@ -130,23 +130,23 @@ const GuiQuestion = (props, children) => {
         />
         {names[4]}
       </label>
-      {type === "exhaust" && (
-        <>
-          <label onClick={(e) => setActivePreview([6, type])}>
-            <input
-              type="radio"
-              name="6"
-              value={6}
-              checked={activeNum === 6}
-              onChange={(event) => {
-                checkAnimation(event, answer, 6);
-                setActiveNum(6);
-              }}
-            />
-            {names[5]}
-          </label>
-        </>
-      )}
+      {/* {type === "exhaust" && ( */}
+      <>
+        <label onClick={(e) => setActivePreview([6, type])}>
+          <input
+            type="radio"
+            name="6"
+            value={6}
+            checked={activeNum === 6}
+            onChange={(event) => {
+              checkAnimation(event, answer, 6);
+              setActiveNum(6);
+            }}
+          />
+          {names[5]}
+        </label>
+      </>
+      {/* )} */}
       {atticMode === true && (
         <>
           <label onClick={(e) => setActivePreview([2, type])}>

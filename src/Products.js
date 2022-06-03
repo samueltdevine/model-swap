@@ -23,7 +23,7 @@ const Products = (props) => {
   } = props;
 
   const houseOnly = useLoader(GLTFLoader, "/houseOnly13.gltf");
-  const products = useLoader(GLTFLoader, "/products15.gltf");
+  const products = useLoader(GLTFLoader, "/products17.gltf");
   const arrow = useLoader(GLTFLoader, "/arrow3.gltf");
   const lightsAttic = useLoader(FBXLoader, "/houseOnly13lights.fbx");
   // debugger;
