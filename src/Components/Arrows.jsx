@@ -240,6 +240,7 @@ const Arrows = (props) => {
         ))} */}
 
       {activeExhaustNum <= 13 &&
+        activeExhaustNum > 0 &&
         exhaustBack.map((curve) => (
           <Arrow lineDisplay color="red" curve={curve} />
         ))}
